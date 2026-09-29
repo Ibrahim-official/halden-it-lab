@@ -1,0 +1,71 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="The lab"
+  description="The Halden Distribution Ltd story, the lab architecture, the tools, and the honesty statement behind this portfolio."
+>
+  <h1>The lab</h1>
+
+  <section>
+    <h2>One simulated company for all ten projects</h2>
+    <div class="problem-statement">
+      <strong>Halden Distribution Ltd.</strong> (fictional): 85 staff, one head office, one
+      warehouse, 12 remote sales staff. Departments: Management, Finance, HR, Sales,
+      Operations/Warehouse, and IT (me). The situation I inherited: a flat network, shared admin
+      passwords, no MFA, ad-hoc backups nobody has tested, assets tracked in a spreadsheet, tickets
+      arriving by email and WhatsApp, and 30% of PCs on Windows 10.
+    </div>
+    <p>
+      Every project starts from that inherited state, fixes it, and measures the before/after. The
+      domain is <code>ad.halden.internal</code> — <code>.internal</code> is the top-level domain
+      ICANN reserved for private use in 2024.
+    </p>
+  </section>
+
+  <section>
+    <h2>Architecture</h2>
+    <p class="small muted">
+      The whole environment runs as virtual machines on one physical host, and it is never exposed
+      to the internet. After project P6 the network is split into firewall-enforced zones:
+    </p>
+    <table>
+      <thead>
+        <tr><th>VLAN</th><th>Zone</th><th>Subnet</th><th>Purpose</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>10</td><td>SERVERS</td><td>192.168.10.0/24</td><td>Domain controllers, file server, app servers</td></tr>
+        <tr><td>20</td><td>WAREHOUSE</td><td>192.168.20.0/24</td><td>Warehouse site behind its own firewall</td></tr>
+        <tr><td>30</td><td>USERS-HQ</td><td>192.168.30.0/24</td><td>Staff workstations</td></tr>
+        <tr><td>40</td><td>MGMT</td><td>192.168.40.0/24</td><td>Admin workstation (PAW), hypervisor, backup plane</td></tr>
+        <tr><td>50</td><td>GUEST</td><td>192.168.50.0/24</td><td>Guest Wi-Fi, internet only</td></tr>
+        <tr><td>60</td><td>IOT</td><td>192.168.60.0/24</td><td>Printers, CCTV, scanners</td></tr>
+        <tr><td>—</td><td>VPN-USERS</td><td>192.168.70.0/24</td><td>Remote staff (MFA VPN)</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>Tools in the lab</h2>
+    <p>
+      Windows Server 2025 and Windows 11 Enterprise (evaluation), Ubuntu Server 24.04, OPNsense,
+      Active Directory, Entra ID (trial tenant), PowerShell, Python, Ansible, WSUS, Greenbone
+      Community Edition, Wazuh, Sysmon, GLPI, BookStack, Uptime Kuma, restic, MinIO with Object
+      Lock, Proxmox Backup Server or Veeam CE, PingCastle, BloodHound CE, HardeningKitty,
+      Atomic Red Team, Power BI Desktop and draw.io. Everything used is free or an evaluation
+      licence.
+    </p>
+  </section>
+
+  <section>
+    <h2>Honesty statement</h2>
+    <p>
+      This is a <strong>home lab</strong>: a simulated company, on my own isolated hardware. The
+      configurations are real, the measurements are real, and synthetic data (such as the 85-user HR
+      file or the synthetic device fleet) is labelled as synthetic wherever it appears. The lab is
+      listed on my CV under <em>Projects / Home Lab</em> — never as employment experience — and
+      nothing here was run against any network I do not own.
+    </p>
+  </section>
+</BaseLayout>

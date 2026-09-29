@@ -1,0 +1,70 @@
+name: deploy-site
+
+# Runs only on main — main is what is live. Work happens on feature branches.
+# The deploy gate runs the placeholder check in strict mode and builds the CV PDF.
+#
+# Prerequisites (owner, one time):
+#   1. Repository is public (or Pages enabled on the plan).
+#   2. Settings → Pages → Build and deployment → Source: GitHub Actions.
+#   3. Set SITE_URL in the repo variables if the site is not at the default GitHub Pages URL.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: site
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: site/package-lock.json
+      - run: npm ci
+
+      - name: Placeholder gate (fails on [N], [X], TODO, your-username)
+        run: npm run check
+        env:
+          PLACEHOLDER_STRICT: '1'
+
+      - run: npx playwright install --with-deps chromium
+
+      - name: Build site
+        run: npm run build
+
+      - name: Generate the CV PDF
+        run: npm run build:cv
+
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site/dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
+
+# Cloudflare Pages alternative: connect the repo, set the build command to
+# `npm run build && npm run build:cv` (root directory `site`), output directory `dist`.
+# The `_headers` file in site/public is then served natively.

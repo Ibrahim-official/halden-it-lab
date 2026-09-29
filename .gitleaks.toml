@@ -1,0 +1,21 @@
+# gitleaks configuration — Halden IT Lab
+# Runs locally (pre-commit) and in CI (.github/workflows/checks.yml).
+title = "Halden IT Lab"
+
+[extend]
+# Use the default gitleaks rule set ...
+useDefault = true
+
+[allowlist]
+description = "Known benign values and paths"
+
+# The P3 project deliberately seeds weak *lab-only* passwords in a fictional, isolated
+# domain (documented in docs/plan/P03 and in the seed script header). They are not secrets.
+regexes = [
+  '''Summer2019!''',
+  '''Halden123!''',
+]
+
+# Raw evidence is git-ignored, but if anything slips in, scan it as usual — paths below
+# are only excluded for large binary files already covered by .gitignore.
+paths = []

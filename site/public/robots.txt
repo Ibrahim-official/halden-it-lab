@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Update this URL (and site/astro.config.mjs) before the first deploy.
+Sitemap: https://your-username.github.io/halden-it-lab/sitemap-index.xml

@@ -1,0 +1,44 @@
+# --- Secrets and keys (never commit) ---
+*.env
+.env.*
+secrets/
+*.pfx
+*.p12
+*.key
+*.pem
+!**/public-certs/*.pem
+
+# --- Raw evidence: originals stay local, never published ---
+projects/*/evidence/raw/*
+!projects/*/evidence/raw/.gitkeep
+
+# --- Raw configuration exports that may contain secrets ---
+*.bloodhound.zip
+bloodhound*/**/*.json
+config.xml
+*.hcc
+
+# --- VM disk images and lab host artifacts ---
+*.vhdx
+*.qcow2
+*.vmdk
+*.vdi
+*.raw
+
+# --- Application and build output ---
+site/node_modules/
+site/dist/
+site/.astro/
+site/public/projects/
+site/public/cv/*.pdf
+
+# --- Local logs and scratch files ---
+logs/
+*.log
+scratch/
+private/
+
+# --- OS junk ---
+.DS_Store
+Thumbs.db
+desktop.ini
