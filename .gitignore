@@ -31,6 +31,7 @@ site/dist/
 site/.astro/
 site/public/projects/
 site/public/cv/*.pdf
+site/screenshots/
 
 # --- Local logs and scratch files ---
 logs/

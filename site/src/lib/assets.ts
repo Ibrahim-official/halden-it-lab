@@ -18,13 +18,15 @@ export function assetUrl(repoPath: string, src: string): string {
   return `/projects/${projectFolder(repoPath)}/${clean}`;
 }
 
+import { GITHUB_REPO } from '../consts';
+
 export function repoUrl(repoPath: string): string {
   // Link into the public GitHub repository.
-  return `https://github.com/your-username/halden-it-lab/tree/main/${repoPath}`;
+  return `${GITHUB_REPO}/tree/main/${repoPath}`;
 }
 
 export function planUrl(planFile: string): string {
-  return `https://github.com/your-username/halden-it-lab/blob/main/docs/plan/${planFile}`;
+  return `${GITHUB_REPO}/blob/main/docs/plan/${planFile}`;
 }
 
 export function sortByOrder<T extends { data: { order: number } }>(entries: T[]): T[] {

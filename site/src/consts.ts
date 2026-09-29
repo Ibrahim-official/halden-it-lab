@@ -3,7 +3,7 @@
  */
 
 // The public repository for this portfolio (used for "view the code" links).
-export const GITHUB_REPO = 'https://github.com/your-username/halden-it-lab';
+export const GITHUB_REPO = 'https://github.com/ibrahim-official/halden-it-lab';
 
 export const SITE_TITLE = 'Muhammad Ibrahim Akmal — IT Support & Systems';
 

@@ -11,7 +11,7 @@ location: "Lahore, Pakistan"
 links:
   email: "ibrahimofficialbusiness@gmail.com"
   linkedin: "https://www.linkedin.com/in/ibrahim-business"
-  github: "https://github.com/your-username"   # TODO: replace with the real username before deploy
+  github: "https://github.com/ibrahim-official"
 
 summary: >-
   Final-year Computer Science student with hands-on experience in IT support, data systems and
@@ -51,11 +51,11 @@ experience:
     start: "2026-04"
     end: null
     bullets:
-      - "Provide day-to-day IT support to [N] non-technical staff, including computer setup and configuration, hardware/software troubleshooting, and preparing documents and presentations."
-      - "Manage and maintain [N]+ records across [N] operational data sheets tracking daily operations, records and performance metrics."
-      - "Built automation workflows using [tool] that reduced manual data entry by about [N] hours per week and sped up reporting."
-      - "Audit datasets [weekly/monthly], finding and correcting [N] duplicate entries and mismatches so management reports are accurate."
-      - "Designed standard tracking systems used by [N] teams, so information is recorded and updated the same way across the business."
+      - "Provide day-to-day IT support to 25+ non-technical staff, including computer setup and configuration, hardware/software troubleshooting, and preparing documents and presentations."
+      - "Manage and maintain 10,000+ records across 6+ operational data sheets tracking daily operations, records and performance metrics."
+      - "Built automation workflows using Python scripts, Google Apps Script and Excel formulas that reduced manual data entry by about 7–10 hours per week and sped up reporting."
+      - "Audit datasets weekly, finding and correcting 10–50 duplicate entries and mismatches so management reports are accurate."
+      - "Designed standard tracking systems used by 5+ teams, so information is recorded and updated the same way across the business."
 
 projects_on_cv: [p01, p02, p09]   # which projects' cv_bullets appear on the CV (keep it to 1 page)
 
@@ -63,9 +63,9 @@ education:
   - degree: "BSc Computer Science"
     org: "Virtual University of Pakistan"
     start: "2023"
-    end: "Expected [Month Year]"
+    end: "Expected Oct 2027"
     notes: "Relevant coursework: Computer Networks, Database Management Systems, Data Structures, Advanced Web Development"
-    fyp: "[add title once approved]"
+    fyp: "Exone AI (approval pending)"
 
 certifications:
   - "Microsoft Learn: Windows Server Hybrid Administrator (AZ-800) learning path, in progress"

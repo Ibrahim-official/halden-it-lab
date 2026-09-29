@@ -34,8 +34,13 @@ Build order: **P1 → P2 → P9 → P3 → P4 → P8 → P5 → P6 → P7 → P1
 - Done: `halden-it-lab` repo skeleton per AGENTS.md Section 3 (folders, root files, workflows,
   Astro site skeleton with P1–P10 as "planned"), `projects/p01-core-infrastructure/docs/00-design.md`
   (IP plan, naming standards, OU tree, site layout, DNS/DHCP design).
+- Done: CV data filled with real values (ChamStore numbers, GitHub `ibrahim-official`, graduation
+  Oct 2027, FYP "Exone AI"); site CV PDF now 1 page; placeholder + alt-text checks clean.
+- Done (private, outside the repo): editable Word CV + clean PDF in `../cv-work/` (includes the
+  phone number — never committed).
 - Evidence: none yet — Phase 0 writes documents only.
 - Problems/fixes: `P10` plan file initially missed in the docs/plan copy (glob `P0*` does not match
-  `P10`); fixed in the same session.
-- Next: confirm the lab host choice (Proxmox vs Hyper-V) and RAM, download the ISOs, snapshot the
-  host, then start P1 Phase 1 (DC01).
+  `P10`); fixed in the same session. `astro preview` in Astro 7 is a per-project daemon, so the CV
+  PDF script now serves `dist/` itself instead of shelling out to `astro preview`.
+- Next: push the repo to GitHub, confirm the lab host choice (Proxmox vs Hyper-V) and RAM,
+  download the ISOs, snapshot the host, then start P1 Phase 1 (DC01).
