@@ -56,6 +56,13 @@ const phone = process.env.CV_PHONE ?? '';
       </ul>
     </section>
 
+    {cv.projects_on_cv.length > 0 && (
+      <p class="small muted print-hide">
+        Ten documented home-lab projects (P1–P10) back these skills; the CV lists the three closest to
+        this role, and the full portfolio site covers all ten with evidence.
+      </p>
+    )}
+
     <section>
       <h2>Professional experience</h2>
       {cv.experience.map((job) => (
@@ -78,10 +85,12 @@ const phone = process.env.CV_PHONE ?? '';
           <div>
             <h3 style="margin-bottom:0;">
               {project.data.title}
-              <span class="muted small" style="font-weight:400;"> · <a href={`/projects/${project.data.id}/`}>case study</a></span>
+              <span class="muted small print-hide" style="font-weight:400;"> · <a href={`/projects/${project.data.id}/`}>case study</a></span>
             </h3>
             <ul>
-              {project.data.cv_bullets.map((bullet) => <li>{bullet}</li>)}
+              {project.data.cv_bullets.map((bullet, index) => (
+                <li class={index > 1 ? 'print-hide' : ''}>{bullet}</li>
+              ))}
             </ul>
           </div>
         ))}
@@ -128,9 +137,10 @@ const phone = process.env.CV_PHONE ?? '';
         display: none !important;
       }
 
+      /* Tightened so the CV stays on one page as the project list grows (AGENTS.md 5.5). */
       :global(body) {
-        font-size: 9.8pt;
-        line-height: 1.4;
+        font-size: 8.6pt;
+        line-height: 1.26;
       }
 
       :global(main) {
@@ -139,26 +149,26 @@ const phone = process.env.CV_PHONE ?? '';
       }
 
       :global(h1) {
-        font-size: 17pt;
+        font-size: 15.5pt;
       }
 
       .cv h2 {
-        font-size: 9.6pt;
-        margin: 0.75em 0 0.2em;
+        font-size: 9.2pt;
+        margin: 0.6em 0 0.15em;
       }
 
       .cv h3 {
-        font-size: 10.2pt;
-        margin: 0.4em 0 0.1em;
+        font-size: 9.6pt;
+        margin: 0.3em 0 0.05em;
       }
 
       .cv p,
       .cv ul {
-        margin: 0.15em 0;
+        margin: 0.1em 0;
       }
 
       .cv li {
-        margin: 0.05em 0;
+        margin: 0.02em 0;
       }
 
       .cv header {
@@ -173,7 +183,7 @@ const phone = process.env.CV_PHONE ?? '';
 
       @page {
         size: A4;
-        margin: 11mm 12mm;
+        margin: 9mm 11mm;
       }
     }
   </style>

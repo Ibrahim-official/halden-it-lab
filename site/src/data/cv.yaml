@@ -17,9 +17,11 @@ summary: >-
   Final-year Computer Science student with hands-on experience in IT support, data systems and
   process automation. At ChamStore I support non-technical staff with day-to-day computer issues,
   maintain accurate records at scale, and build workflows and tracking systems that reduce manual
-  work. Comfortable with PHP/Laravel, SQL and Python, and currently building a documented home lab
-  covering Windows Server, Active Directory, identity and access management, backups and security
-  monitoring. Looking for an IT Support Officer or junior System Administrator role.
+  work. Comfortable with PHP/Laravel, SQL and Python, and I have built and documented a ten-project
+  home lab covering Windows Server and Active Directory, identity lifecycle and MFA, endpoint
+  hardening, vulnerability management, network segmentation, backup and disaster recovery, SIEM and
+  IT governance under CIS Controls v8 IG1. Looking for an IT Support Officer or junior System
+  Administrator role.
 
 skills:
   - group: "IT Support"
@@ -30,7 +32,22 @@ skills:
       - Microsoft 365 apps
       - documentation and presentations
   - group: "Systems"
-    items: []   # grows as each project completes — only list what a project proves
+    items:
+      - Windows Server 2025 (AD DS, DNS, DHCP, Group Policy)
+      - Active Directory design, OU structure and AGDLP least privilege
+      - file services (DFS-N, ABE, FSRM, shadow copies)
+      - identity lifecycle and access governance (joiner-mover-leaver)
+      - Microsoft Entra ID, Conditional Access and MFA
+      - Windows LAPS and privileged access tiering
+      - endpoint hardening (Microsoft security baselines, Defender ASR, BitLocker)
+      - patch and vulnerability management (WSUS, careful risk-based prioritisation)
+      - backup, recovery and disaster recovery (3-2-1-1-0, immutable copies)
+      - network segmentation, VPN and 802.1X Wi-Fi (OPNsense, NPS/RADIUS)
+      - SIEM and incident response (Wazuh, Sysmon, MITRE ATT&CK)
+      - IT service management and CMDB (GLPI, service catalogue, SLAs)
+      - Linux server administration (Ubuntu, AD integration with SSSD)
+      - CIS Controls v8 IG1 governance and change management
+      - PowerShell and Bash automation
   - group: "Data & Reporting"
     items:
       - advanced Excel / Google Sheets
