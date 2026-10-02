@@ -43,3 +43,7 @@ private/
 .DS_Store
 Thumbs.db
 desktop.ini
+
+# --- Python caches (byte-code, never committed) ---
+__pycache__/
+*.pyc

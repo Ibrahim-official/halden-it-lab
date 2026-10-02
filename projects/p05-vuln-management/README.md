@@ -3,11 +3,9 @@
 > Home-lab project in an isolated, simulated 85-user company ("Halden Distribution Ltd").
 > Presented as a home lab on the portfolio site — never as employment experience.
 
-**Status:** planned · **Build order:** 7 of 10 · **Depends on:** P1, P4 (P9 CMDB criticality improves it later)
+**Status:** build kit complete — **lab execution pending** · **Build order:** 7 of 10 · **Depends on:** P1, P9
 
-**Plan:** [`docs/plan/P05-patch-vulnerability-management.md`](../../docs/plan/P05-patch-vulnerability-management.md)
-**Showcase page source:** [`showcase.md`](./showcase.md)
-**Progress:** see [`PROGRESS.md`](../../PROGRESS.md)
+**Plan:** [`docs/plan/P05-patch-vulnerability-management.md`](../../docs/plan/P05-patch-vulnerability-management.md) · **Design:** [`docs/00-design.md`](./docs/00-design.md) · **As-built:** [`docs/as-built.md`](./docs/as-built.md) · **Showcase page source:** [`showcase.md`](./showcase.md) · **Progress:** [`PROGRESS.md`](../../PROGRESS.md)
 
 The technical write-up is completed at project completion, following the template in
 `AGENTS.md` (Appendix B): problem, what I built, architecture, how to reproduce,

@@ -3,11 +3,9 @@
 > Home-lab project in an isolated, simulated 85-user company ("Halden Distribution Ltd").
 > Presented as a home lab on the portfolio site — never as employment experience.
 
-**Status:** planned · **Build order:** 10 of 10 · **Depends on:** P1-P9 (it measures and reports on them)
+**Status:** build kit complete — **lab execution pending** · **Build order:** 10 of 10 · **Depends on:** P1-P9
 
-**Plan:** [`docs/plan/P10-governance-cis-ig1-change-reporting.md`](../../docs/plan/P10-governance-cis-ig1-change-reporting.md)
-**Showcase page source:** [`showcase.md`](./showcase.md)
-**Progress:** see [`PROGRESS.md`](../../PROGRESS.md)
+**Plan:** [`docs/plan/P10-governance-cis-ig1-change-reporting.md`](../../docs/plan/P10-governance-cis-ig1-change-reporting.md) · **Design:** [`docs/00-design.md`](./docs/00-design.md) · **As-built:** [`docs/as-built.md`](./docs/as-built.md) · **Showcase page source:** [`showcase.md`](./showcase.md) · **Progress:** [`PROGRESS.md`](../../PROGRESS.md)
 
 The technical write-up is completed at project completion, following the template in
 `AGENTS.md` (Appendix B): problem, what I built, architecture, how to reproduce,
