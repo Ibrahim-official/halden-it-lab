@@ -17,15 +17,19 @@ synthetic device fleet) is labelled as synthetic wherever it appears.
 | # | Project | Anchor score | Status |
 |---|---|---|---|
 | 1 | [P1 — Core Infrastructure Build](projects/p01-core-infrastructure/) | 86 | 🔄 in progress |
-| 2 | [P2 — Identity Lifecycle & Access Governance](projects/p02-identity-lifecycle/) | 94 | ⬜ planned |
-| 3 | [P9 — IT Service Desk, CMDB & Documentation Hub](projects/p09-service-desk-cmdb/) | 90 | ⬜ planned |
-| 4 | [P3 — AD Security & Privileged Access](projects/p03-ad-security/) | 93 | ⬜ planned |
-| 5 | [P4 — Endpoint Hardening & Windows 11 Readiness](projects/p04-endpoint-hardening/) | 87 | ⬜ planned |
-| 6 | [P8 — Backup, Recovery & DR](projects/p08-backup-dr/) | 97 | ⬜ planned |
-| 7 | [P5 — Patch & Vulnerability Management](projects/p05-vuln-management/) | 97 | ⬜ planned |
-| 8 | [P6 — Network Segmentation, VPN & Wi-Fi](projects/p06-network-segmentation/) | 87 | ⬜ planned |
-| 9 | [P7 — SIEM & Incident Response](projects/p07-siem-incident-response/) | 94 | ⬜ planned |
-| 10 | [P10 — IT Governance & Reporting](projects/p10-governance/) | 97 | ⬜ planned |
+| 2 | [P2 — Identity Lifecycle & Access Governance](projects/p02-identity-lifecycle/) | 94 | 🔄 build kit ready |
+| 3 | [P9 — IT Service Desk, CMDB & Documentation Hub](projects/p09-service-desk-cmdb/) | 90 | 🔄 build kit ready |
+| 4 | [P3 — AD Security & Privileged Access](projects/p03-ad-security/) | 93 | 🔄 build kit ready |
+| 5 | [P4 — Endpoint Hardening & Windows 11 Readiness](projects/p04-endpoint-hardening/) | 87 | 🔄 build kit ready |
+| 6 | [P8 — Backup, Recovery & DR](projects/p08-backup-dr/) | 97 | 🔄 build kit ready |
+| 7 | [P5 — Patch & Vulnerability Management](projects/p05-vuln-management/) | 97 | 🔄 build kit ready |
+| 8 | [P6 — Network Segmentation, VPN & Wi-Fi](projects/p06-network-segmentation/) | 87 | 🔄 build kit ready |
+| 9 | [P7 — SIEM & Incident Response](projects/p07-siem-incident-response/) | 94 | 🔄 build kit ready |
+| 10 | [P10 — IT Governance & Reporting](projects/p10-governance/) | 97 | 🔄 build kit ready |
+
+"Build kit ready" means the scripts, configurations, runbooks, business artifacts and showcase page
+are written, reviewed and ready to run — but **nothing has been executed in the lab yet**, so no
+project is marked done and no metric is published on the site. See [`PROGRESS.md`](PROGRESS.md).
 
 Total: about 18 weeks part-time (8–10 h/week). Application milestones: start applying for
 IT Support Officer roles after P1 + P2 + P9 (week 6); junior sysadmin roles after P3 + P4 + P8

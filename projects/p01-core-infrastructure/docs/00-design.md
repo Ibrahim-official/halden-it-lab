@@ -49,20 +49,20 @@ build reproducible from scripts).
 
 ## 4. Lab host and VM plan
 
-Hypervisor choice is still open (Proxmox VE recommended; Hyper-V acceptable). 32 GB RAM is the
-comfortable target; on 16 GB, use Server Core for DC02/FS01 and run only the VMs a phase needs.
-Power off what you are not using.
+Hypervisor: **Hyper-V on Windows 11 Pro** (decision D9). Minimal specs: dynamic memory, thin VHDX,
+Server Core for DC02/FS01. Peak P1 footprint is about 12 GB if every VM runs at its maximum; the
+host needs 16 GB. Power off what you are not using. `scripts/00-New-LabVMs.ps1` creates the VMs.
 
-| VM | Role | OS | vCPU | RAM | IP (P1, flat LAN) | Notes |
-|---|---|---|---|---|---|---|
-| HOST01 | Hypervisor | Proxmox VE / Win 11 Pro | — | — | 192.168.10.5 | Snapshot home |
-| FW01 | Gateway / firewall (LAN only in P1) | OPNsense | 1 | 1 GB | 192.168.10.1 | VLANs added in P6 |
-| DC01 | DC, DNS, DHCP (primary), PDC emulator | Windows Server 2025 | 2 | 4 GB | 192.168.10.10 | Full desktop |
-| DC02 | DC, DNS, DHCP (failover partner) | Windows Server 2025 | 2 | 2 GB | 192.168.10.11 | Core if RAM-tight |
-| FS01 | File server (DFS-N, FSRM, VSS) | Windows Server 2025 | 2 | 2 GB | 192.168.10.20 | Core if RAM-tight |
-| LNX01 | Ubuntu app server, AD-joined | Ubuntu Server 24.04 | 2 | 2 GB | 192.168.10.30 | realmd/SSSD |
-| WS01 | User workstation | Windows 11 Enterprise eval | 2 | 4 GB | DHCP | Baseline test target |
-| WS02 | Second workstation / later PAW | Windows 11 Enterprise eval | 2 | 4 GB | DHCP | P3/P4 target |
+| VM | Role | OS | vCPU | RAM (start-max) | Disk | IP (P1, flat LAN) | Notes |
+|---|---|---|---|---|---|---|---|
+| HOST01 | Hypervisor | Win 11 Pro + Hyper-V | - | 16 GB host | - | 192.168.10.5 | Checkpoint home |
+| FW01 | Gateway (LAN only in P1) | OPNsense | 1 | 0.5-1 GB | 8 GB | 192.168.10.1 | WAN = Hyper-V Default Switch (NAT) |
+| DC01 | DC, DNS, DHCP primary, PDC | Server 2025 (Desktop) | 2 | 1-2 GB | 40 GB | 192.168.10.10 | |
+| DC02 | DC, DNS, DHCP partner | Server 2025 Core | 2 | 1-2 GB | 40 GB | 192.168.10.11 | |
+| FS01 | File server | Server 2025 Core | 2 | 1-2 GB | 60 GB | 192.168.10.20 | |
+| LNX01 | AD-joined app server | Ubuntu Server 24.04 | 1 | 0.5-1 GB | 20 GB | 192.168.10.30 | realmd/SSSD |
+| WS01 | User workstation | Windows 11 Enterprise eval | 2 | 2-4 GB | 64 GB | DHCP | 4 GB is the Win 11 minimum |
+| WS02 | 2nd workstation / PAW | Windows 11 Enterprise eval | 2 | 2-4 GB | 64 GB | DHCP | created in P3, not P1 |
 
 Later projects add: OPS01 (.40) in P9, SIEM01 (.41) in P7, BKP01 (.42) in P8, CA01 (.43) in P6.
 
@@ -255,12 +255,10 @@ Accounts → **G**lobal role groups → **D**omain **L**ocal resource groups →
   on DCs; snapshot DC changes but tell me before reverting one.
 - Phase 0 changed nothing in the lab, so no snapshot was needed. **Phase 1 does change things.**
 
-## 19. Open questions for the owner (need answers before Phase 1)
+## 19. Decisions taken (owner delegated all choices; see DECISIONS.md D9-D12)
 
-1. **Hypervisor:** Proxmox VE or Hyper-V? (RAM available on the host?)
-2. ISO downloads done? Windows Server 2025 eval, Windows 11 Enterprise eval, Ubuntu 24.04.
-3. Time zone/NTP preference: `time.windows.com` or `pool.ntp.org`?
-4. Is there a UPS on the lab host? (Load-shedding can corrupt VMs mid-build.)
+1. Hypervisor: Hyper-V. 2. NTP: `time.windows.com`. 3. Switch design: private `Halden-LAN`, FW01 WAN on
+Default Switch so the home LAN is never touched. 4. UPS: unknown; use Hyper-V checkpoints and shut VMs down cleanly.
 
 ## 20. Risks
 

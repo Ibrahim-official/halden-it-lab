@@ -13,7 +13,9 @@
     "build": "astro build",
     "preview": "astro preview",
     "check": "node scripts/check-placeholders.mjs && node scripts/check-alt-text.mjs",
-    "build:cv": "node scripts/build-cv-pdf.mjs"
+    "build:cv": "node scripts/build-cv-pdf.mjs",
+    "docs:pdf": "node scripts/md-to-pdf.mjs",
+    "docs:pdf:all": "node scripts/build-business-pdfs.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.4",

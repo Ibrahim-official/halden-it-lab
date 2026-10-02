@@ -2,10 +2,12 @@
  * Copies sanitized showcase assets from the project folders into the site's public directory.
  *
  *   projects/<folder>/evidence/public/**  ->  site/public/projects/<folder>/**
+ *   projects/<folder>/business/*.pdf      ->  site/public/projects/<folder>/
  *
- * The site's showcase frontmatter references evidence with paths relative to the project folder
- * (e.g. "./evidence/public/p03-hero.svg"). Those files are never committed under site/public —
- * they are copied at dev/build time from the single source of truth.
+ * The site's showcase frontmatter references evidence and business documents with paths relative
+ * to the project folder (e.g. "./evidence/public/p03-hero.svg", "./business/p03-brief.pdf").
+ * Those files are never committed under site/public — they are copied at dev/build time from the
+ * single source of truth.
  *
  * Runs automatically via the `predev` and `prebuild` npm scripts.
  */
@@ -29,17 +31,29 @@ mkdirSync(targetRoot, { recursive: true });
 
 let copied = 0;
 for (const entry of readdirSync(projectsDir)) {
-  const source = join(projectsDir, entry, 'evidence', 'public');
-  if (!existsSync(source) || !statSync(source).isDirectory()) continue;
+  const sources = [];
+  const evidence = join(projectsDir, entry, 'evidence', 'public');
+  if (existsSync(evidence) && statSync(evidence).isDirectory()) sources.push(evidence);
+  const business = join(projectsDir, entry, 'business');
+  if (existsSync(business) && statSync(business).isDirectory()) sources.push(business);
 
-  const files = readdirSync(source, { recursive: true }).filter((f) =>
-    statSync(join(source, String(f))).isFile(),
-  );
+  const files = [];
+  for (const source of sources) {
+    for (const f of readdirSync(source, { recursive: true })) {
+      const full = join(source, String(f));
+      if (!statSync(full).isFile()) continue;
+      // Only the sanitized, publishable artifact types leave the repository.
+      if (source === business && !/\.pdf$/i.test(String(f))) continue;
+      files.push(String(f));
+    }
+  }
   if (files.length === 0) continue;
 
   const target = join(targetRoot, entry);
   mkdirSync(target, { recursive: true });
-  cpSync(source, target, { recursive: true });
+  for (const source of sources) {
+    cpSync(source, target, { recursive: true, filter: (src) => source !== business || /\.pdf$/i.test(src) || statSync(src).isDirectory() });
+  }
   copied += files.length;
   console.log(`[assets] ${entry}: ${files.length} file(s)`);
 }
