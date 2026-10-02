@@ -34,6 +34,14 @@ param(
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
 
+# --- Lab guard (AGENTS.md Section 2) ------------------------------------------------------------
+$markerFile = 'C:\halden-lab-marker'
+if (-not (Test-Path $markerFile -PathType Leaf)) {
+    throw "Not a Halden lab host (no $markerFile). Aborting. Create it once: New-Item -ItemType File -Path '$markerFile' -Force"
+}
+$adRoot = (Get-ADDomain -ErrorAction SilentlyContinue).DNSRoot
+if ($adRoot -and $adRoot -ne 'ad.halden.internal') { throw 'Not the Halden lab domain. Aborting.' }
+
 $supported = @('Microsoft.Graph.Authentication', 'Microsoft.Graph.Identity.SignIns')
 foreach ($m in $supported) {
     if (-not (Get-Module -ListAvailable -Name $m)) { throw "Required module '$m' is not installed." }
@@ -42,6 +50,17 @@ foreach ($m in $supported) {
 if (-not (Test-Path $ConfigFile)) { throw "Config not found: $ConfigFile" }
 
 Connect-MgGraph -Scopes 'Policy.ReadWrite.AuthenticationMethod' -NoWelcome
+
+# Second half of the guard: refuse to act unless the signed-in tenant is the lab tenant.
+$tenantConfig = Join-Path $PSScriptRoot '..\configs\lab-tenant.json'
+$tenantDomain = (Get-MgOrganization).VerifiedDomains | Where-Object { $_.IsInitial -or $_.Name -like '*.onmicrosoft.com' } |
+    Select-Object -First 1 -ExpandProperty Name
+if (Test-Path $tenantConfig) {
+    $expected = (Get-Content $tenantConfig -Raw | ConvertFrom-Json).labTenantDomain
+    if (-not $expected) { throw 'configs\lab-tenant.json has an empty labTenantDomain. Fill it in before running the cloud scripts.' }
+    if ($tenantDomain -ne $expected) { throw 'Signed-in tenant does not match the lab tenant in configs\lab-tenant.json. Aborting.' }
+}
+Write-Host 'Signed in to the lab tenant.' -ForegroundColor Green
 
 $desired = (Get-Content $ConfigFile -Raw | ConvertFrom-Json).authenticationMethodConfiguration
 $exceptions = New-Object System.Collections.Generic.List[string]

@@ -54,6 +54,14 @@ param(
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
 
+# --- Lab guard (AGENTS.md Section 2) ------------------------------------------------------------
+$markerFile = 'C:\halden-lab-marker'
+if (-not (Test-Path $markerFile -PathType Leaf)) {
+    throw "Not a Halden lab host (no $markerFile). Aborting. Create it once: New-Item -ItemType File -Path '$markerFile' -Force"
+}
+$adRoot = (Get-ADDomain -ErrorAction SilentlyContinue).DNSRoot
+if ($adRoot -and $adRoot -ne 'ad.halden.internal') { throw 'Not the Halden lab domain. Aborting.' }
+
 if (-not (Get-Command Invoke-SCuBA -ErrorAction SilentlyContinue)) {
     throw @'
 ScubaGear is not installed. Run these once, then try again:

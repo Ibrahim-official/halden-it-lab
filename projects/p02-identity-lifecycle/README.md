@@ -115,6 +115,12 @@ before, and finish Cloud Sync, Conditional Access and ScubaGear inside the 30-da
 lapses, the documented fallback is an Entra ID Free tenant with Security Defaults and Conditional
 Access recorded as the design, not as a completed deployment.
 
+**Two things to create before the first run.** On the lab Windows host, create the marker file that
+every P2 script checks: `New-Item -ItemType File -Path 'C:\halden-lab-marker' -Force`. Then, once the
+trial tenant exists (start of Phase 3), paste its `onmicrosoft.com` domain into
+`configs/lab-tenant.json` under `labTenantDomain` — the four cloud scripts refuse to run until that
+matches the tenant that is actually signed in, so the guard cannot be satisfied by accident.
+
 Secrets (the break-glass passwords, the gMSA context) are generated and written only to git-ignored
 paths or the owner's password manager — never to the repository. Tenant IDs, tenant domains, object
 IDs and UPNs are sanitized out before anything is published.
