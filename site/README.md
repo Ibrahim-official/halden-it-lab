@@ -19,9 +19,20 @@ npm run dev          # http://localhost:4321
 | `npm run dev` | Dev server (copies showcase assets first) |
 | `npm run build` | Static build into `dist/` (copies showcase assets first) |
 | `npm run preview` | Serve the built site locally |
-| `npm run check` | Placeholder check + alt-text check (warnings by default) |
+| `npm run check` | Placeholder check + alt-text check + honesty check (placeholder warnings by default, honesty failures always block) |
 | `PLACEHOLDER_STRICT=1 npm run check` | Fail on unresolved placeholders (deploy gate) |
 | `npm run build:cv` | Print `/cv` to `dist/cv/Muhammad-Ibrahim-Akmal-CV.pdf` with Playwright (run `npm run build` first; needs `npx playwright install chromium` once) |
+| `npm run docs:pdf` | Render one business artifact: `npm run docs:pdf -- ../projects/pXX-.../business/<file>.md` |
+| `npm run docs:pdf:all` | Render **every** `projects/*/business/*.md` to a PDF beside it (the site links to those PDFs) |
+
+## What the checks protect
+
+| Check | Protects against |
+|---|---|
+| `check-placeholders.mjs` | A `[N]`, `[X]`, `TODO` or `your-username` placeholder reaching the public site (AGENTS.md 5.5) |
+| `check-alt-text.mjs` | An image on the site without alt text (accessibility) |
+| `check-honesty.mjs` | The most damaging mistake in this portfolio: publishing a metric that was never measured. It blocks a `metrics:` entry while the project is not `done`, and blocks any `documents`/`hero`/`gallery`/`metrics` path that does not exist on disk (AGENTS.md R2, 4.5) |
+| `md-to-pdf.mjs` | A business artifact that exists as Markdown but not as the PDF the site links to (4.7 item 4) |
 
 ## Content sources
 
@@ -29,7 +40,8 @@ npm run dev          # http://localhost:4321
 |---|---|
 | CV (home page, `/cv`, PDF) | `site/src/data/cv.yaml` |
 | Case studies | `../projects/<folder>/showcase.md` |
-| Evidence images/documents | `../projects/<folder>/evidence/public/` (copied to `site/public/projects/` at build) |
+| Evidence images | `../projects/<folder>/evidence/public/` (copied to `site/public/projects/` at build) |
+| Business documents (PDF) | `../projects/<folder>/business/*.pdf`, generated from the Markdown beside them |
 
 ## Before the first deploy
 

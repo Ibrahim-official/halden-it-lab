@@ -22,23 +22,98 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-  script-lint:
-    name: Script lint (bash)
+  honest-numbers:
+    name: Honesty gate (no unmeasured metrics)
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: shellcheck (runs only when .sh scripts exist)
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Every published metric must have a real evidence file
+        run: node site/scripts/check-honesty.mjs
+
+  script-lint:
+    name: Script lint (bash + PowerShell)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: shellcheck
         run: |
           set -euo pipefail
           mapfile -t files < <(find projects -name '*.sh' -type f)
           if [ "${#files[@]}" -eq 0 ]; then
-            echo "No bash scripts yet — nothing to lint."
+            echo "No bash scripts — nothing to lint."
             exit 0
           fi
           sudo apt-get update -qq
           sudo apt-get install -y -qq shellcheck
           shellcheck "${files[@]}"
-      # PowerShell lint (PSScriptAnalyzer) is added together with the first .ps1 script (P1 Phase 1).
+      - name: PSScriptAnalyzer (errors block, warnings reported)
+        shell: pwsh
+        run: |
+          Set-PSRepository PSGallery -InstallationPolicy Trusted
+          Install-Module PSScriptAnalyzer -Force -Scope CurrentUser
+          $files = Get-ChildItem projects -Recurse -Filter *.ps1
+          if ($files.Count -eq 0) { Write-Host 'No PowerShell scripts — nothing to lint.'; return }
+          $errors = Invoke-ScriptAnalyzer -Path projects -Recurse -Severity Error
+          $warnings = Invoke-ScriptAnalyzer -Path projects -Recurse -Severity Warning
+          if ($warnings) {
+            Write-Host "::notice::$($warnings.Count) PowerShell warning(s) — review, they may be justified:"
+            $warnings | Format-Table -AutoSize | Out-String | Write-Host
+          }
+          if ($errors) {
+            $errors | Format-Table -AutoSize | Out-String | Write-Host
+            throw "$($errors.Count) PowerShell error(s) found."
+          }
+          Write-Host 'PowerShell lint: no errors.'
+
+  config-and-tests:
+    name: Config syntax + Python tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate JSON and YAML configs
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json, pathlib, sys
+          try:
+              import yaml
+          except ImportError:
+              yaml = None
+          bad = []
+          for path in pathlib.Path('projects').rglob('*'):
+              if not path.is_file():
+                  continue
+              if path.suffix == '.json':
+                  try:
+                      json.loads(path.read_text())
+                  except Exception as exc:
+                      bad.append(f'{path}: {exc}')
+              elif path.suffix in {'.yml', '.yaml'} and yaml is not None:
+                  try:
+                      yaml.safe_load(path.read_text())
+                  except Exception as exc:
+                      bad.append(f'{path}: {exc}')
+          for item in bad:
+              print(f'INVALID {item}')
+          if bad:
+              sys.exit(1)
+          print('Config syntax: clean.')
+          PY
+      - name: Python unit tests
+        run: |
+          set -euo pipefail
+          if [ -z "$(find projects -name 'test_*.py' -o -name '*_test.py' | head -1)" ]; then
+            echo "No Python tests — nothing to run."
+            exit 0
+          fi
+          python3 -m pip install --quiet pytest
+          python3 -m pytest projects -q
 
   site:
     name: Site build and checks
@@ -54,10 +129,22 @@ jobs:
           cache: npm
           cache-dependency-path: site/package-lock.json
       - run: npm ci
-      - name: Placeholder + alt-text checks
+      - name: Placeholder, alt-text and honesty checks
         run: npm run check
       - name: Build site
         run: npm run build
+      - name: Business artifacts exist as PDF
+        run: |
+          set -euo pipefail
+          missing=0
+          while IFS= read -r md; do
+            pdf="${md%.md}.pdf"
+            if [ ! -f "$pdf" ]; then
+              echo "::error file=$md::missing PDF export ($pdf) — run 'npm run docs:pdf:all'"
+              missing=1
+            fi
+          done < <(find ../projects -path '*/business/*.md' -type f)
+          exit $missing
       - name: Link check (lychee)
         uses: lycheeverse/lychee-action@v2
         with:

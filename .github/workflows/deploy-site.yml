@@ -37,12 +37,15 @@ jobs:
           cache-dependency-path: site/package-lock.json
       - run: npm ci
 
-      - name: Placeholder gate (fails on [N], [X], TODO, your-username)
+      - name: Placeholder + honesty gate (fails on [N], [X], TODO, your-username, unmeasured metrics)
         run: npm run check
         env:
           PLACEHOLDER_STRICT: '1'
 
       - run: npx playwright install --with-deps chromium
+
+      - name: Regenerate the business artifact PDFs
+        run: npm run docs:pdf:all
 
       - name: Build site
         run: npm run build
@@ -66,5 +69,5 @@ jobs:
         uses: actions/deploy-pages@v4
 
 # Cloudflare Pages alternative: connect the repo, set the build command to
-# `npm run build && npm run build:cv` (root directory `site`), output directory `dist`.
-# The `_headers` file in site/public is then served natively.
+# `npm run docs:pdf:all && npm run build && npm run build:cv` (root directory `site`), output
+# directory `dist`. The `_headers` file in site/public is then served natively.
