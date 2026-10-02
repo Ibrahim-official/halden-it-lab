@@ -46,7 +46,7 @@ A score of **3 requires evidence**: the assessment tool refuses to accept a 3 wh
 
 | Safeguard | Title | In scope | Before | After | Evidence source | Expected evidence (Halden) |
 |---|---|---|---|---|---|---|
-| 1.1 | Establish and Maintain Detailed Enterprise Asset Inventory | yes | not measured | not measured | — | department and approval to connect; review twice a year. |
+| 1.1 | Establish and Maintain Detailed Enterprise Asset Inventory | yes | not measured | not measured | — | GLPI asset inventory (P9) reconciled with a network scan and the DHCP/AD computer objects |
 | 1.2 | Address Unauthorized Assets | yes | not measured | not measured | — | GLPI reconciliation run showing 0 unknown devices and the process note for quarantine |
 | 2.1 | Establish and Maintain a Software Inventory | yes | not measured | not measured | — | GLPI software inventory export with publisher and version |
 | 2.2 | Ensure Authorized Software is Currently Supported | yes | not measured | not measured | — | Windows 11 readiness report listing unsupported Windows 10 devices and the ESU/exception decision |
@@ -90,7 +90,7 @@ A score of **3 requires evidence**: the assessment tool refuses to accept a 3 wh
 | 11.3 | Protect Recovery Data | yes | not measured | not measured | — | P8 repository encryption and immutability proof |
 | 11.4 | Establish and Maintain an Isolated Instance of Recovery Data | yes | not measured | not measured | — | P8 immutability deletion-refused proof for the isolated offsite copy |
 | 12.1 | Ensure Network Infrastructure is Up-to-Date | yes | not measured | not measured | — | P5 firmware patching record for FW01/FW02 and the support review |
-| 14.1 | Establish and Maintain a Security Awareness Program | yes | not measured | not measured | — | Gap - no awareness programme exists yet; tracked in the P10 90-day roadmap (roadmap item) |
+| 14.1 | Establish and Maintain a Security Awareness Program | yes | not measured | not measured | — | Gap: no awareness programme exists yet - tracked in the P10 90-day roadmap |
 | 14.2 | Train Workforce Members to Recognize Social Engineering Attacks | yes | not measured | not measured | — | Gap - future phishing simulation and training register (roadmap item) |
 | 14.3 | Train Workforce Members on Authentication Best Practices | yes | not measured | not measured | — | Gap - future training register (roadmap item) |
 | 14.4 | Train Workforce on Data Handling Best Practices | yes | not measured | not measured | — | Gap - future training register (roadmap item) |

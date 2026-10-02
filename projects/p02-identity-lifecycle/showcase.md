@@ -13,14 +13,16 @@ jd_bullets:
   - "Work with departments (HR, department heads) on process improvement"
 hero: ./evidence/public/p02-architecture.svg
 documents:
-  - title: "Executive brief: access that follows the person, not the desk"
+  - title: "Executive brief: identity lifecycle and access governance"
     href: ./business/p02-exec-brief.pdf
-  - title: "Joiner-mover-leaver process and RACI (for HR and department heads)"
-    href: ./business/p02-jml-process.md.pdf
-  - title: "Entitlements matrix with department-head sign-off"
+  - title: "Executive brief: stopping access by memory, removing it by luck"
+    href: ./business/p2-exec-brief.pdf
+  - title: "Entitlements and role matrix (for department-head review)"
     href: ./business/p02-entitlements-matrix.pdf
-  - title: "Change record: hybrid identity, Conditional Access and MFA enforcement"
+  - title: "Change record: the JML engine, Conditional Access and MFA"
     href: ./business/p02-change-record.pdf
+  - title: "Access review pack: how department heads sign off access"
+    href: ./business/p02-access-review-pack.pdf
 repo_path: projects/p02-identity-lifecycle
 video: ""
 cv_bullets:
@@ -66,9 +68,10 @@ number is published here. Each metric below will be filled from a real lab run w
 
 ## Business side
 
-What the business gets, not just what IT builds: a joiner-mover-leaver process and RACI that HR and
-department heads can follow, an entitlements matrix that the business signs off (access is a business
-decision), a one-page executive brief, and a change record in the shape the change log expects.
+What the business gets: a joiner-mover-leaver process and RACI that HR and department heads can
+follow, an entitlements matrix the business signs off (access is a business decision, not an IT one),
+an executive brief, an access-review pack for department heads, and a change record in the shape the
+change log expects. Sign-offs are left visibly unsigned until a review actually happens.
 
 ## What I learned / what I'd do differently
 
