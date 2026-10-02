@@ -2,29 +2,48 @@
 id: p01
 order: 1
 title: "Core Infrastructure Build: AD DS, DNS, DHCP, File Services, GPO and Linux Integration"
-tagline: "A redundant Windows Server foundation — two domain controllers, least-privilege file services, and a Linux server that logs in with a domain account"
+tagline: A redundant Windows Server foundation — two domain controllers, least-privilege file services, and a Linux
+  server that logs in with a domain account
 status: in-progress
 started: 2026-09-29
-roles: [sysadmin, it-support]
-skills: ["Active Directory", "DNS", "DHCP", "Group Policy", "Windows Server 2025", "PowerShell", "Linux (Ubuntu)", "SSSD/realmd", "DFS", "FSRM", "AGDLP"]
+roles:
+  - sysadmin
+  - it-support
+skills:
+  - Active Directory
+  - DNS
+  - DHCP
+  - Group Policy
+  - Windows Server 2025
+  - PowerShell
+  - Linux (Ubuntu)
+  - SSSD/realmd
+  - DFS
+  - FSRM
+  - AGDLP
 jd_bullets:
-  - "Administer Windows/Linux servers, Active Directory, DNS, DHCP and file services"
-  - "Access based on least privilege (AGDLP)"
-  - "Accurate configurations, diagrams and technical documentation"
+  - Administer Windows/Linux servers, Active Directory, DNS, DHCP and file services
+  - Access based on least privilege (AGDLP)
+  - Accurate configurations, diagrams and technical documentation
 hero: ./evidence/public/p01-architecture.svg
 documents:
-  - title: "Staff brief (1 page): what is changing and what users will notice"
+  - title: "Brief"
     href: ./business/p01-brief.pdf
-  - title: "File share permission matrix (with department-head sign-off column)"
-    href: ./business/p01-permission-matrix.pdf
-  - title: "Change record: risk, test plan and backout"
+  - title: "Change Record"
     href: ./business/p01-change-record.pdf
+  - title: "Permission Matrix"
+    href: ./business/p01-permission-matrix.pdf
 repo_path: projects/p01-core-infrastructure
 cv_bullets:
-  - "Built a redundant Windows Server 2025 Active Directory foundation for an 85-user simulated company: two replicating domain controllers, AD-integrated DNS and a DHCP failover pair."
-  - "Implemented AGDLP least-privilege permissions across five departmental shares with DFS-N, Access-Based Enumeration, FSRM quotas and file screens, and wrote a PowerShell ACL audit that enforces it."
-  - "Automated OU, group and 85-account user provisioning from an HR CSV with idempotent, logged PowerShell, and joined Ubuntu to AD with group-controlled SSH and sudo."
-lab_note: "Home-lab project in an isolated, simulated 85-user company (Halden Distribution Ltd.). The staff file is synthetic. This page shows a working build kit that is being executed in the lab phase by phase — numbers appear here only once they have actually been measured, and the results table is deliberately empty until then."
+  - "Built a redundant Windows Server 2025 Active Directory foundation for an 85-user simulated company: two replicating
+    domain controllers, AD-integrated DNS and a DHCP failover pair."
+  - Implemented AGDLP least-privilege permissions across five departmental shares with DFS-N, Access-Based Enumeration,
+    FSRM quotas and file screens, and wrote a PowerShell ACL audit that enforces it.
+  - Automated OU, group and 85-account user provisioning from an HR CSV with idempotent, logged PowerShell, and joined
+    Ubuntu to AD with group-controlled SSH and sudo.
+lab_note: Home-lab project in an isolated, simulated 85-user company (Halden Distribution Ltd.). The staff file is
+  synthetic. This page shows a working build kit that is being executed in the lab phase by phase — numbers appear here
+  only once they have actually been measured, and the results table is deliberately empty until then.
 ---
 
 ## The problem
@@ -124,3 +143,14 @@ receives and signs off:
   slower at first and much faster by phase 5, because a failed step could simply be re-run.
 - **Interview answers come from the runbooks.** The "user can't log in" runbook is literally the
   answer to that interview question — writing documentation was revision, not admin overhead.
+> complete; lab execution runs phase by phase. Metrics, diagrams and evidence are published only
+> from real runs (the Definition of Done is in `AGENTS.md`, Section 4.7), and progress is tracked
+> in `PROGRESS.md`.
+> complete; lab execution runs phase by phase. Metrics, diagrams and evidence are published only
+> from real runs (the Definition of Done is in `AGENTS.md`, Section 4.7), and progress is tracked
+> in `PROGRESS.md`.
+
+> Status: **in progress**. The build kit (scripts, configs, runbooks, business artifacts) is
+> complete; lab execution runs phase by phase. Metrics, diagrams and evidence are published only
+> from real runs (the Definition of Done is in `AGENTS.md`, Section 4.7), and progress is tracked
+> in `PROGRESS.md`.

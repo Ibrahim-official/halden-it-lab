@@ -51,11 +51,18 @@ param(
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
 
-# The break-glass accounts are cloud-only; this script still refuses to run outside the lab so it can
-# never be pointed at a real tenant by accident.
-if (Test-Path 'C:\halden-lab-marker' -PathType Leaf) { } elseif ((Get-ADDomain -ErrorAction SilentlyContinue).DNSRoot -ne $Domain) {
-    throw 'Not the Halden lab. Aborting.'
+# --- Lab guard (AGENTS.md Section 2) ------------------------------------------------------------
+# These cloud steps act on a Microsoft Entra ID tenant, which Get-ADDomain cannot check. The guard is
+# therefore an explicit, two-part refusal: the marker file must exist AND the tenant domain must be
+# the one recorded in configs/lab-tenant.json. The marker file keeps the script from ever being
+# pointed at a production tenant by accident (rule R1).
+$markerFile = 'C:\halden-lab-marker'
+$tenantConfig = Join-Path $PSScriptRoot '..\configs\lab-tenant.json'
+if (-not (Test-Path $markerFile -PathType Leaf)) {
+    throw "Not a Halden lab host (no $markerFile). Aborting. Create it once: New-Item -ItemType File -Path '$markerFile' -Force"
 }
+$adRoot = (Get-ADDomain -ErrorAction SilentlyContinue).DNSRoot
+if ($adRoot -and $adRoot -ne 'ad.halden.internal') { throw 'Not the Halden lab domain. Aborting.' }
 
 foreach ($m in 'Microsoft.Graph.Authentication', 'Microsoft.Graph.Users') {
     if (-not (Get-Module -ListAvailable -Name $m)) { throw "Required module '$m' is not installed." }
@@ -63,10 +70,21 @@ foreach ($m in 'Microsoft.Graph.Authentication', 'Microsoft.Graph.Users') {
 }
 Connect-MgGraph -Scopes 'User.ReadWrite.All', 'Directory.ReadWrite.All', 'RoleManagement.ReadWrite.Directory' -NoWelcome
 
+# Second half of the guard: confirm the tenant that is actually signed in is the lab tenant recorded
+# in configs\lab-tenant.json. This is what stops a script pointed at the wrong account doing anything.
 $tenantDomain = (Get-MgOrganization).VerifiedDomains | Where-Object { $_.IsInitial -or $_.Name -like '*.onmicrosoft.com' } |
     Select-Object -First 1 -ExpandProperty Name
 if (-not $tenantDomain) { throw 'Could not determine the tenant onmicrosoft.com domain from Get-MgOrganization.' }
-Write-Host "Tenant domain detected (do NOT publish this value): $tenantDomain"
+if (Test-Path $tenantConfig) {
+    $expected = (Get-Content $tenantConfig -Raw | ConvertFrom-Json).labTenantDomain
+    if (-not $expected) {
+        throw "configs\lab-tenant.json has an empty labTenantDomain. Fill it in with the trial tenant's onmicrosoft.com domain before running the cloud scripts."
+    }
+    if ($tenantDomain -ne $expected) {
+        throw "Signed-in tenant '$tenantDomain' does not match the lab tenant recorded in configs\lab-tenant.json. Aborting."
+    }
+}
+Write-Host 'Signed in to the lab tenant (domain intentionally not printed).' -ForegroundColor Green
 
 function New-RandomPassword {
     param([int] $Length = 40)

@@ -8,7 +8,7 @@
   both GPOs, and exports GPO reports (XML + HTML) so Policy Analyzer can be used to compare the
   baseline with the existing P1-P3 GPOs.
 
-  The script never edits Microsoft's original GPO backups, so the next baseline release can be
+  The script never edits the original Microsoft GPO backups, so the next baseline release can be
   imported and compared later. It is idempotent: existing GPOs and links are left alone.
 
   Run Policy Analyzer (free, from the Security Compliance Toolkit) afterwards and save its

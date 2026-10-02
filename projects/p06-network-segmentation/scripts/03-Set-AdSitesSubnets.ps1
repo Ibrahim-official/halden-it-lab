@@ -43,6 +43,8 @@ $siteMap = @{
 
 if (-not (Test-Path $VlanPlanCsv)) { throw "VLAN plan not found: $VlanPlanCsv" }
 $plan = Import-Csv -Path $VlanPlanCsv | Where-Object { $_.zone -and -not $_.zone.StartsWith('#') -and $_.subnet }
+$created = 0
+$skipped = 0
 
 foreach ($row in $plan) {
   $site = $siteMap[$row.zone]
@@ -58,14 +60,17 @@ foreach ($row in $plan) {
     else {
       Write-Information ("{0,-20} already exists ({1})" -f $row.subnet, $site) -InformationAction Continue
     }
+    $skipped++
     continue
   }
 
   if ($PSCmdlet.ShouldProcess($row.subnet, "Create AD subnet in site $site")) {
     New-ADReplicationSubnet -Name $row.subnet -Site $site -Description "P6 $($row.zone) zone"
     Write-Information ("{0,-20} created in {1}" -f $row.subnet, $site) -InformationAction Continue
+    $created++
   }
 }
+Write-Information ("subnets: {0} created, {1} already present" -f $created, $skipped) -InformationAction Continue
 
 Write-Information "`n--- Sites and subnets ---" -InformationAction Continue
 Get-ADReplicationSubnet -Filter * | Select-Object Name, Site | Sort-Object Name | Format-Table -AutoSize |

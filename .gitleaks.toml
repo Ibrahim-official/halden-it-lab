@@ -7,13 +7,15 @@ title = "Halden IT Lab"
 useDefault = true
 
 [allowlist]
-description = "Known benign values and paths"
+description = "Known benign values for this repository (fictional-lab literals, schema identifiers)"
 
 # The P3 project deliberately seeds weak *lab-only* passwords in a fictional, isolated
 # domain (documented in docs/plan/P03 and in the seed script header). They are not secrets.
 regexes = [
   '''Summer2019!''',
   '''Halden123!''',
+  # Not secrets: GPO/ADMX schema identifiers used in the P3 LAPS policy configuration.
+  '''\{[0-9A-Fa-f]{8}-([0-9A-Fa-f]{4}-){3}[0-9A-Fa-f]{12}\}''',
 ]
 
 # Raw evidence is git-ignored, but if anything slips in, scan it as usual — paths below

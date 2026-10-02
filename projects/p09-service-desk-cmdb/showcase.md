@@ -1,41 +1,61 @@
 ---
 id: p09
 order: 3
-title: "IT Service Desk, Asset Inventory (CMDB) and Documentation Hub"
+title: IT Service Desk, Asset Inventory (CMDB) and Documentation Hub
 tagline: "A real ITSM platform: asset discovery, SLAs, knowledge base, vendors and config-as-code"
 status: in-progress
 started: 2026-10-02
-roles: [it-support, sysadmin]
-skills: ["GLPI", "ITSM", "CMDB", "Asset Discovery", "SLAs", "Service Catalogue", "BookStack", "PHP/MySQL", "Uptime Kuma", "Git config-as-code", "Vendor Management", "PowerShell", "Python"]
+roles:
+  - it-support
+  - sysadmin
+skills:
+  - GLPI
+  - ITSM
+  - CMDB
+  - Asset Discovery
+  - SLAs
+  - Service Catalogue
+  - BookStack
+  - PHP/MySQL
+  - Uptime Kuma
+  - Git config-as-code
+  - Vendor Management
+  - PowerShell
+  - Python
 jd_bullets:
-  - "Maintain accurate infrastructure inventory, configurations, diagrams and technical documentation"
-  - "Coordinate with vendors and service providers"
-  - "Provide technical support and escalation assistance to the IT Support team"
-  - "Maintain accurate records and ensure timely completion (SLAs)"
-  - "Follow change-control procedures (config drift detection)"
-  - "Improve processes and produce reports for management"
+  - Maintain accurate infrastructure inventory, configurations, diagrams and technical documentation
+  - Coordinate with vendors and service providers
+  - Provide technical support and escalation assistance to the IT Support team
+  - Maintain accurate records and ensure timely completion (SLAs)
+  - Follow change-control procedures (config drift detection)
+  - Improve processes and produce reports for management
 hero: ./evidence/public/p09-architecture.svg
 documents:
-  - title: "Service catalogue (services, approvals and target times)"
-    href: ./business/p09-service-catalogue.pdf
-  - title: "SLA policy (priority matrix, business hours and targets)"
-    href: ./business/p09-sla-policy.pdf
-  - title: "L1 / L2 / vendor escalation matrix with handoff template"
-    href: ./business/p09-escalation-matrix.pdf
-  - title: "Vendor management procedure (with security review)"
-    href: ./business/p09-vendor-management.pdf
-  - title: "ITSM executive brief (1 page)"
-    href: ./business/p09-itsm-brief.pdf
-  - title: "Change record: risk, test plan and backout"
+  - title: "Change Record"
     href: ./business/p09-change-record.pdf
-  - title: "KPI and reporting definitions"
+  - title: "Escalation Matrix"
+    href: ./business/p09-escalation-matrix.pdf
+  - title: "Itsm Brief"
+    href: ./business/p09-itsm-brief.pdf
+  - title: "Kpi Reporting"
     href: ./business/p09-kpi-reporting.pdf
+  - title: "Service Catalogue"
+    href: ./business/p09-service-catalogue.pdf
+  - title: "Sla Policy"
+    href: ./business/p09-sla-policy.pdf
+  - title: "Vendor Management"
+    href: ./business/p09-vendor-management.pdf
 repo_path: projects/p09-service-desk-cmdb
 cv_bullets:
-  - "Deployed GLPI ITSM on Ubuntu with agent-based asset discovery, LDAP authentication and a weekly reconciliation script that compares the CMDB against DHCP leases and network scans."
-  - "Built a helpdesk with a service catalogue, business-hours SLAs (TTO/TTR) and an L1 to L2 to vendor escalation matrix, plus a BookStack documentation hub with an owner and review date on every page."
-  - "Implemented config-as-code: a nightly export of GPO, AD, DHCP, DNS, firewall and NPS configuration to a private Git repository, with drift detection that flags a change lacking an approved change record."
-lab_note: "Home-lab project in an isolated, simulated 85-user company (Halden Distribution Ltd.). Tickets, assets, suppliers and contracts are synthetic. This page shows a working build kit that is being executed in the lab phase by phase — the results table stays empty and no number appears here until it has actually been measured."
+  - Deployed GLPI ITSM on Ubuntu with agent-based asset discovery, LDAP authentication and a weekly reconciliation
+    script that compares the CMDB against DHCP leases and network scans.
+  - Built a helpdesk with a service catalogue, business-hours SLAs (TTO/TTR) and an L1 to L2 to vendor escalation
+    matrix, plus a BookStack documentation hub with an owner and review date on every page.
+  - "Implemented config-as-code: a nightly export of GPO, AD, DHCP, DNS, firewall and NPS configuration to a private Git
+    repository, with drift detection that flags a change lacking an approved change record."
+lab_note: Home-lab project in an isolated, simulated 85-user company (Halden Distribution Ltd.). Tickets, assets,
+  suppliers and contracts are synthetic. This page shows a working build kit that is being executed in the lab phase by
+  phase — the results table stays empty and no number appears here until it has actually been measured.
 ---
 
 ## The problem
@@ -139,3 +159,14 @@ agrees and receives:
 - **Config-as-code is only a control with a change record beside it.** A nightly diff that flags
   everything is noise; the value is checking the diff against approved change records, and I would
   wire that check in from the first commit next time.
+> complete; lab execution runs phase by phase. Metrics, diagrams and evidence are published only
+> from real runs (the Definition of Done is in `AGENTS.md`, Section 4.7), and progress is tracked
+> in `PROGRESS.md`.
+> complete; lab execution runs phase by phase. Metrics, diagrams and evidence are published only
+> from real runs (the Definition of Done is in `AGENTS.md`, Section 4.7), and progress is tracked
+> in `PROGRESS.md`.
+
+> Status: **in progress**. The build kit (scripts, configs, runbooks, business artifacts) is
+> complete; lab execution runs phase by phase. Metrics, diagrams and evidence are published only
+> from real runs (the Definition of Done is in `AGENTS.md`, Section 4.7), and progress is tracked
+> in `PROGRESS.md`.

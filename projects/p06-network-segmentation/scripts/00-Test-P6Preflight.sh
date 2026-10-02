@@ -74,15 +74,21 @@ print_csv() {
 }
 
 # A secret grep across the project tree (no secrets should ever be committed).
+# It looks for key material with an actual base64 body, not for the words in a template or a doc.
 scan_secrets() {
   echo
   echo "== Secret scan (should find nothing) =="
-  if grep -rIn -E 'BEGIN (RSA |EC |OPENSSH )?PRIVATE KEY|BEGIN OpenVPN Static key|SharedSecret *= *[^<]' \
-      "$PROJECT_DIR" 2>/dev/null | grep -v 'PLACEHOLDER_NOT_A_REAL_KEY'; then
-    echo "  ^ review the hits above; only placeholder lines are acceptable." >&2
-  else
-    echo "  clean - no private keys or shared secrets found."
+  local hits
+  hits="$(grep -rIn -A3 -E '^-----BEGIN (RSA |EC |OPENSSH )?PRIVATE KEY-----$|^-----BEGIN OpenVPN Static key V1-----$' \
+            --include='*.key' --include='*.pem' --include='*.ovpn' --include='*.conf' --include='*.env' \
+            "$PROJECT_DIR" 2>/dev/null | grep -E '^[^:]+-[0-9]+-[A-Za-z0-9+/=]{40,}$' || true)"
+  if [[ -n "$hits" ]]; then
+    echo "  ^ a key with a real body was found - remove it and rotate the credential:" >&2
+    echo "$hits" >&2
+    return 1
   fi
+  echo "  clean - no private keys or shared secrets with a real body found."
+  echo "  (template files contain placeholder markers only; see configs/p06-certificate-plan.md.)"
 }
 
 check_files

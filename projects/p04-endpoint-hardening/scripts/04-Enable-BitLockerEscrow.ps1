@@ -3,7 +3,7 @@
   Phase 3 - enable BitLocker (TPM + recovery password) and escrow the recovery keys to AD.
 .DESCRIPTION
   Enforces the order the P4 plan is emphatic about: the AD escrow policy must exist BEFORE any
-  drive is encrypted, otherwise a recovery key ends up in nobody's hands. The script therefore
+  drive is encrypted, otherwise a recovery key ends up in the wrong hands. The script therefore
   aborts unless you confirm the "WKS - BitLocker - v1" policy is in place (-EscrowPolicyVerified),
   unless -Force is used with a recorded reason.
 
@@ -13,13 +13,13 @@
 
   SECURITY: the recovery password is never read into a variable, printed or written to a file.
   The output CSV records only the key protector ID and the escrow result. Recovery keys stay in
-  the vault (AD / the owner's password manager) and are never committed to the repository.
+  the vault (AD / the owner password manager) and are never committed to the repository.
 .PARAMETER ComputerName
   Clients to protect. Defaults to WS01.
 .PARAMETER MountPoint
   Volume to encrypt. Default 'C:'.
 .PARAMETER EncryptionMethod
-  Encryption cipher. Default XtsAes256 (the plan's requirement).
+  Encryption cipher. Default XtsAes256 (the requirement in the P4 plan).
 .PARAMETER UseUsedSpaceOnly
   Encrypt used space only (faster; fine for new machines). Default off (full-disk encryption).
 .PARAMETER EscrowPolicyVerified

@@ -24,7 +24,7 @@
   .\02-Set-AsrAudit.ps1 -ComputerName WS01,WS02
 .NOTES
   Snapshot the client first: snap-p4-ph2-before. Rollback = 03-Set-AsrBlock.ps1 with -RevertToAudit,
-  or remove the policy. Verify every GUID against Microsoft Learn's "Attack surface reduction rules
+  or remove the policy. Verify every GUID against the Microsoft Learn "Attack surface reduction rules
   reference" before deploying, because the list changes between Windows releases.
 #>
 [CmdletBinding(SupportsShouldProcess)]

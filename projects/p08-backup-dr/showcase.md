@@ -1,37 +1,61 @@
 ---
 id: p08
 order: 6
-title: "Backup, Recovery and Disaster Recovery with Automated Restore Verification"
-tagline: "3-2-1-1-0 backups with an immutable copy and restore tests that actually run every week"
+title: Backup, Recovery and Disaster Recovery with Automated Restore Verification
+tagline: 3-2-1-1-0 backups with an immutable copy and restore tests that actually run every week
 status: in-progress
 started: 2026-10-02
-roles: [sysadmin, it-support]
-skills: ["Proxmox Backup Server", "Veeam CE", "restic", "MinIO Object Lock", "wbadmin", "S3 Object Lock", "Business Impact Analysis", "RTO/RPO", "DR Runbooks", "AD Recycle Bin", "authoritative restore", "Bash", "PowerShell", "Python", "Uptime Kuma"]
+roles:
+  - sysadmin
+  - it-support
+skills:
+  - Proxmox Backup Server
+  - Veeam CE
+  - restic
+  - MinIO Object Lock
+  - wbadmin
+  - S3 Object Lock
+  - Business Impact Analysis
+  - RTO/RPO
+  - DR Runbooks
+  - AD Recycle Bin
+  - authoritative restore
+  - Bash
+  - PowerShell
+  - Python
+  - Uptime Kuma
 jd_bullets:
-  - "Maintain backup, recovery and disaster-recovery procedures and periodically verify backups"
-  - "Work with different departments (business impact analysis)"
-  - "Technical documentation; vendor coordination (offsite storage)"
-  - "Understand business operations and prepare reports and presentations for management"
+  - Maintain backup, recovery and disaster-recovery procedures and periodically verify backups
+  - Work with different departments (business impact analysis)
+  - Technical documentation; vendor coordination (offsite storage)
+  - Understand business operations and prepare reports and presentations for management
 hero: ./evidence/public/p08-architecture.svg
 documents:
-  - title: "Executive brief: can Halden survive a ransomware attack?"
-    href: ./business/p08-executive-brief.pdf
-  - title: "Backup and recovery policy (draft for approval)"
+  - title: "Backup Policy"
     href: ./business/p08-backup-policy.pdf
-  - title: "Disaster recovery plan (roles, recovery order, decision points)"
-    href: ./business/p08-dr-plan.pdf
-  - title: "Service levels: recovery objectives agreed with the business"
-    href: ./business/p08-service-levels.pdf
-  - title: "Restore-test register (format, verified weekly)"
-    href: ./business/p08-restore-test-register.pdf
-  - title: "Change record: risk, test plan and backout"
+  - title: "Change Record"
     href: ./business/p08-change-record.pdf
+  - title: "Dr Plan"
+    href: ./business/p08-dr-plan.pdf
+  - title: "Executive Brief"
+    href: ./business/p08-executive-brief.pdf
+  - title: "Restore Test Register"
+    href: ./business/p08-restore-test-register.pdf
+  - title: "Service Levels"
+    href: ./business/p08-service-levels.pdf
 repo_path: projects/p08-backup-dr
 cv_bullets:
-  - "Led a Business Impact Analysis with five departments to define recovery time and data-loss objectives per system, then designed a 3-2-1-1-0 backup strategy with a non-domain-joined, hardened backup server and an immutable off-site copy."
-  - "Proved immutability by attempting to destroy the off-site repository with the backup account's own credentials and recording the refused deletion and the successful version-rewind recovery."
-  - "Built an automated weekly restore verification (hash-checked file restores plus a sandboxed virtual-machine boot with service health checks) whose result is published to monitoring and forms the backup KPI."
-lab_note: "Home-lab project in an isolated, simulated 85-user company (Halden Distribution Ltd.). This page shows a working build kit that is being executed in the lab phase by phase. Recovery times, restore success rates and drill durations are deliberately absent: they appear only once a timed drill has actually measured them. Until then every figure here is a target, clearly labelled as such."
+  - Led a Business Impact Analysis with five departments to define recovery time and data-loss objectives per system,
+    then designed a 3-2-1-1-0 backup strategy with a non-domain-joined, hardened backup server and an immutable off-site
+    copy.
+  - Proved immutability by attempting to destroy the off-site repository with the backup account's own credentials and
+    recording the refused deletion and the successful version-rewind recovery.
+  - Built an automated weekly restore verification (hash-checked file restores plus a sandboxed virtual-machine boot
+    with service health checks) whose result is published to monitoring and forms the backup KPI.
+lab_note: "Home-lab project in an isolated, simulated 85-user company (Halden Distribution Ltd.). This page shows a
+  working build kit that is being executed in the lab phase by phase. Recovery times, restore success rates and drill
+  durations are deliberately absent: they appear only once a timed drill has actually measured them. Until then every
+  figure here is a target, clearly labelled as such."
 ---
 
 ## The problem
@@ -145,3 +169,14 @@ and signs off:
 - **Keeping the backup out of the domain has a real cost, and that is the point.** It means another set
   of credentials and no single sign-on. It buys survival of the exact scenario backups exist for, and
   pretending otherwise would have been the easy mistake.
+> complete; lab execution runs phase by phase. Metrics, diagrams and evidence are published only
+> from real runs (the Definition of Done is in `AGENTS.md`, Section 4.7), and progress is tracked
+> in `PROGRESS.md`.
+> complete; lab execution runs phase by phase. Metrics, diagrams and evidence are published only
+> from real runs (the Definition of Done is in `AGENTS.md`, Section 4.7), and progress is tracked
+> in `PROGRESS.md`.
+
+> Status: **in progress**. The build kit (scripts, configs, runbooks, business artifacts) is
+> complete; lab execution runs phase by phase. Metrics, diagrams and evidence are published only
+> from real runs (the Definition of Done is in `AGENTS.md`, Section 4.7), and progress is tracked
+> in `PROGRESS.md`.

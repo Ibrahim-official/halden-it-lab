@@ -5,7 +5,7 @@
   P3 introduces Windows LAPS and privileged-access tiering; P4 consumes it. This script verifies
   that the LAPS policy reaches the workstations, reports the password-update age for each client,
   flags clients whose managed local administrator password is stale, and can trigger a password
-  rotation so the compliance report's LAPS check is meaningful.
+  rotation so the compliance report LAPS check is meaningful.
 
   SECURITY: the LAPS password is NEVER read, displayed, exported or written anywhere. Only the
   account name and the update timestamp are used. Passwords stay in Active Directory, which the

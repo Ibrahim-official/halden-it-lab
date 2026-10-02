@@ -10,7 +10,7 @@
 .PARAMETER ComputerName
   Clients to report on. Default WS01.
 .PARAMETER ExpectedBuild
-  Build number the lab targets. Default 22631 (Windows 11 23H2). Update after checking Microsoft's
+  Build number the lab targets. Default 22631 (Windows 11 23H2). Update after checking the Microsoft
   Windows 11 release information page.
 .PARAMETER Domain
   Lab domain DNS name. The script refuses to run outside it.

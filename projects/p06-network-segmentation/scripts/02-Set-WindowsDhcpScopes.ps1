@@ -88,9 +88,9 @@ foreach ($s in $plan) {
     Write-Result -Scope $s.scope_name -Action 'options' -Detail ("router={0} dns={1} domain={2}" -f $s.option003_router, ($dns -join ','), $s.option015_domain)
   }
 
-  # Add the scope to the existing failover relationship (idempotent: Add is skipped if present).
-  $already = @($failover.ScopeId) -contains [System.Net.IPAddress]::Parse($scopeId).ToString() -or
-             (@($failover.ScopeId) -join ',') -match [regex]::Escape($scopeId)
+  # Add the scope to the existing failover relationship (idempotent: it is skipped if already there).
+  $failoverScopes = @($failover.ScopeId)
+  $already = ($failoverScopes -contains $scopeId) -or (((@($failoverScopes) -join ',')) -match [regex]::Escape($scopeId))
   if ($already) {
     Write-Result -Scope $s.scope_name -Action 'skip' -Detail 'already in the failover relationship'
   }

@@ -55,6 +55,14 @@ param(
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
 
+# --- Lab guard (AGENTS.md Section 2) ------------------------------------------------------------
+$markerFile = 'C:\halden-lab-marker'
+if (-not (Test-Path $markerFile -PathType Leaf)) {
+    throw "Not a Halden lab host (no $markerFile). Aborting. Create it once: New-Item -ItemType File -Path '$markerFile' -Force"
+}
+$adRoot = (Get-ADDomain -ErrorAction SilentlyContinue).DNSRoot
+if ($adRoot -and $adRoot -ne 'ad.halden.internal') { throw 'Not the Halden lab domain. Aborting.' }
+
 foreach ($m in 'Microsoft.Graph.Authentication', 'Microsoft.Graph.Identity.SignIns') {
     if (-not (Get-Module -ListAvailable -Name $m)) { throw "Required module '$m' is not installed." }
     Import-Module $m -ErrorAction Stop
@@ -64,6 +72,17 @@ if ($BreakGlassUpn.Count -lt 2) {
     Write-Warning 'Fewer than two break-glass accounts were supplied. One is a single point of failure - the lab design calls for two.'
 }
 Connect-MgGraph -Scopes 'Policy.Read.All', 'Policy.ReadWrite.ConditionalAccess' -NoWelcome
+
+# Second half of the guard: refuse to act unless the signed-in tenant is the lab tenant.
+$tenantConfig = Join-Path $PSScriptRoot '..\configs\lab-tenant.json'
+$tenantDomain = (Get-MgOrganization).VerifiedDomains | Where-Object { $_.IsInitial -or $_.Name -like '*.onmicrosoft.com' } |
+    Select-Object -First 1 -ExpandProperty Name
+if (Test-Path $tenantConfig) {
+    $expected = (Get-Content $tenantConfig -Raw | ConvertFrom-Json).labTenantDomain
+    if (-not $expected) { throw 'configs\lab-tenant.json has an empty labTenantDomain. Fill it in before running the cloud scripts.' }
+    if ($tenantDomain -ne $expected) { throw "Signed-in tenant does not match the lab tenant in configs\lab-tenant.json. Aborting." }
+}
+Write-Host 'Signed in to the lab tenant.' -ForegroundColor Green
 
 $stateValue = if ($State -eq 'Enabled') { 'enabled' } else { 'enabledForReportingButNotEnforced' }
 
