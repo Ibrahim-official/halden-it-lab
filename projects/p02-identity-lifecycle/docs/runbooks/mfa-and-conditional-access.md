@@ -10,6 +10,10 @@
 
 ## Order of work (do not re-order)
 
+0. **One-off, before anything:** on the lab host, create the marker file the P2 scripts check —
+   `New-Item -ItemType File -Path 'C:\halden-lab-marker' -Force` — and paste the trial tenant's
+   `onmicrosoft.com` domain into `configs/lab-tenant.json` (`labTenantDomain`). The cloud scripts refuse
+   to run until the signed-in tenant matches that value.
 1. **Break-glass accounts first.** Create the two cloud-only break-glass accounts before any policy
    exists, and make sure they are **excluded from every CA policy** in `configs/conditional-access/`:
    ```powershell
