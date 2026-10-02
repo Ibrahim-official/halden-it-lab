@@ -16,18 +16,18 @@ jd_bullets:
   - "Reports and business updates; identify issues and communicate them to management"
 hero: ./evidence/public/p05-architecture.svg
 documents:
-  - title: "Executive brief: why 'fix everything by Friday' is not a plan"
-    href: ./business/p05-exec-brief.pdf
-  - title: "Patch and vulnerability management policy (tiers, SLA targets, exceptions)"
-    href: ./business/p05-patch-vuln-policy.pdf
-  - title: "Exception and risk-acceptance register (with a worked example row)"
-    href: ./business/p05-exception-register.pdf
-  - title: "Monthly patch and vulnerability report template"
-    href: ./business/p05-monthly-report-template.pdf
-  - title: "Vendor security advisory log"
-    href: ./business/p05-vendor-advisory-log.pdf
-  - title: "Change record: programme build and a worked P0 remediation record"
+  - title: "Change Record"
     href: ./business/p05-change-record.pdf
+  - title: "Exception Register"
+    href: ./business/p05-exception-register.pdf
+  - title: "Exec Brief"
+    href: ./business/p05-exec-brief.pdf
+  - title: "Monthly Report Template"
+    href: ./business/p05-monthly-report-template.pdf
+  - title: "Patch Vuln Policy"
+    href: ./business/p05-patch-vuln-policy.pdf
+  - title: "Vendor Advisory Log"
+    href: ./business/p05-vendor-advisory-log.pdf
 repo_path: projects/p05-vuln-management
 cv_bullets:
   - "Built a risk-based vulnerability management programme that combines weekly authenticated Greenbone scans with a Python engine enriching findings with CISA KEV and FIRST EPSS data, asset exposure and criticality, producing a tiered P0-P4 work list with SLA dates."
@@ -147,6 +147,9 @@ An IT project that cannot be explained to management is a hobby:
 - **I would sequence two things differently next time:** start the Greenbone feed sync a day early (it
   takes hours), and define asset criticality with the business before writing the model — the tiers
   are only as good as the criticality data underneath, which is why P9's CMDB improves this project.
-
-> Status: **in-progress**. Metrics, diagrams and evidence are only published once the project is Done
 > (the Definition of Done is in `AGENTS.md`, Section 4.7). Progress is tracked in `PROGRESS.md`.
+
+> Status: **in progress**. The build kit (scripts, configs, runbooks, business artifacts) is
+> complete; lab execution runs phase by phase. Metrics, diagrams and evidence are published only
+> from real runs (the Definition of Done is in `AGENTS.md`, Section 4.7), and progress is tracked
+> in `PROGRESS.md`.

@@ -1,6 +1,6 @@
 # Halden Distribution Ltd. — CIS IG1 compliance evidence index
 
-**As of:** 2026-10-02  **Safeguards indexed:** 56  **Expected artifacts present today:** 10 of 56
+**As of:** 2026-10-02  **Safeguards indexed:** 56  **Expected artifacts present today:** 16 of 56
 
 > This indexes the **repository**, not the lab. An artifact is *present* when the file named in `configs/cis-ig1-evidence-map.csv` exists in this repository today. Because the lab has not been executed, most artifacts are *expected - not present*: that is the honest state of an unexecuted build kit, and it is why no safeguard is scored yet.
 
@@ -9,12 +9,12 @@
 | Source project | Safeguards it is expected to evidence | Artifacts present today |
 |---|---|---|
 | P1 | 7 | 5 |
-| P10 | 7 | 1 |
+| P10 | 7 | 7 |
 | P2 | 5 | 1 |
 | P3 | 4 | 3 |
 | P4 | 8 | 1 |
 | P5 | 4 | 1 |
-| P6 | 5 | 0 |
+| P6 | 5 | 1 |
 | P7 | 5 | 0 |
 | P8 | 4 | 1 |
 | P9 | 7 | 1 |
@@ -29,14 +29,14 @@
 | 2.1 | Establish and Maintain a Software Inventory | GLPI software inventory export with publisher and version | `projects/p09-service-desk-cmdb/evidence/public/p09-ph2-software-inventory-result.csv` | expected - not present |
 | 2.2 | Ensure Authorized Software is Currently Supported | Windows 11 readiness report listing unsupported Windows 10 devices and the ESU/exception decision | `projects/p04-endpoint-hardening/evidence/public/p04-ph1-win11-readiness-report.pdf` | expected - not present |
 | 2.3 | Address Unauthorized Software | GLPI software inventory with the unauthorised-software review column | `projects/p09-service-desk-cmdb/evidence/public/p09-ph2-software-inventory-result.csv` | expected - not present |
-| 3.1 | Establish and Maintain a Data Management Process | Data Protection section of the P10 policy pack (owner review date and exceptions process) | `projects/p10-governance/business/p10-policy-pack.md` | expected - not present |
+| 3.1 | Establish and Maintain a Data Management Process | Data Protection section of the P10 policy pack (owner review date and exceptions process) | `projects/p10-governance/business/p10-policy-pack.md` | present |
 | 3.2 | Establish and Maintain a Data Inventory | GLPI asset/data inventory plus the permissions matrix showing Finance and HR data owners | `projects/p09-service-desk-cmdb/evidence/public/p09-ph2-asset-inventory-result.csv` | expected - not present |
 | 3.3 | Configure Data Access Control Lists | AGDLP permission matrix and the PowerShell ACL audit reporting 0 violations | `projects/p01-core-infrastructure/business/p01-permission-matrix.csv` | present |
-| 3.4 | Enforce Data Retention | Retention schedule in the P10 policy pack (Finance and HR retention periods) | `projects/p10-governance/business/p10-policy-pack.md` | expected - not present |
-| 3.5 | Securely Dispose of Data | Disposal and leaver-data-handling section of the P10 policy pack | `projects/p10-governance/business/p10-policy-pack.md` | expected - not present |
+| 3.4 | Enforce Data Retention | Retention schedule in the P10 policy pack (Finance and HR retention periods) | `projects/p10-governance/business/p10-policy-pack.md` | present |
+| 3.5 | Securely Dispose of Data | Disposal and leaver-data-handling section of the P10 policy pack | `projects/p10-governance/business/p10-policy-pack.md` | present |
 | 3.6 | Encrypt Data on End-User Devices | BitLocker escrow proof - recovery key stored in AD and a successful recovery test | `projects/p04-endpoint-hardening/evidence/public/p04-ph3-bitlocker-escrow-result.png` | expected - not present |
 | 4.1 | Establish and Maintain a Secure Configuration Process | P1 GPO baseline plus the as-built document describing the build standard | `projects/p01-core-infrastructure/docs/as-built.md` | present |
-| 4.2 | Establish and Maintain a Secure Configuration Process for Network Infrastructure | P6 firewall rule matrix and the network standard in the P10 policy pack | `projects/p10-governance/business/p10-policy-pack.md` | expected - not present |
+| 4.2 | Establish and Maintain a Secure Configuration Process for Network Infrastructure | P6 firewall rule matrix and the network standard in the P10 policy pack | `projects/p10-governance/business/p10-policy-pack.md` | present |
 | 4.3 | Configure Automatic Session Locking on Enterprise Assets | Desktop standards GPO (secure screen saver 600s) evidenced by gpresult on WS01 | `projects/p01-core-infrastructure/docs/as-built.md` | present |
 | 4.4 | Implement and Manage a Firewall on Servers | Segmentation test results showing server ports filtered by the firewall | `projects/p06-network-segmentation/evidence/public/p06-ph3-segmentation-results.csv` | expected - not present |
 | 4.5 | Implement and Manage a Firewall on End-User Devices | Host firewall baseline in the P4 security baseline and the compliance report | `projects/p04-endpoint-hardening/evidence/public/p04-ph2-asr-block-result.png` | expected - not present |
@@ -51,11 +51,11 @@
 | 6.3 | Require MFA for Externally-Exposed Applications | P2 MFA coverage report (Conditional Access enforced for all users) | `projects/p02-identity-lifecycle/evidence/public/p02-ph5-mfa-coverage-result.png` | expected - not present |
 | 6.4 | Require MFA for Remote Network Access | P6 VPN MFA prompt and the RADIUS/NPS decision note | `projects/p06-network-segmentation/evidence/public/p06-ph5-vpn-mfa-result.png` | expected - not present |
 | 6.5 | Require MFA for Administrative Access | P3 privileged access standard and the MFA-enforced admin sign-in proof | `projects/p03-ad-security/evidence/public/p03-ph5-laps-access-denied-result.png` | expected - not present |
-| 7.1 | Establish and Maintain a Vulnerability Management Process | Vulnerability Management section of the P10 policy pack | `projects/p10-governance/business/p10-policy-pack.md` | expected - not present |
+| 7.1 | Establish and Maintain a Vulnerability Management Process | Vulnerability Management section of the P10 policy pack | `projects/p10-governance/business/p10-policy-pack.md` | present |
 | 7.2 | Establish and Maintain a Remediation Process | P3 remediation priority rules and the P5 tiering decision record | `projects/p03-ad-security/configs/p03-remediation-priority-rules.json` | present |
 | 7.3 | Perform Automated Operating System Patch Management | P5 WSUS ring patch compliance report (target 95% within 14 days) | `projects/p05-vuln-management/evidence/public/p05-ph4-patch-compliance-result.csv` | expected - not present |
 | 7.4 | Perform Automated Application Patch Management | P5 application patch coverage from the same ring compliance report | `projects/p05-vuln-management/evidence/public/p05-ph4-patch-compliance-result.csv` | expected - not present |
-| 8.1 | Establish and Maintain an Audit Log Management Process | Logging and Monitoring section of the P10 policy pack | `projects/p10-governance/business/p10-policy-pack.md` | expected - not present |
+| 8.1 | Establish and Maintain an Audit Log Management Process | Logging and Monitoring section of the P10 policy pack | `projects/p10-governance/business/p10-policy-pack.md` | present |
 | 8.2 | Collect Audit Logs | P7 Wazuh agents reporting and the enabled security audit policy | `projects/p07-siem-incident-response/evidence/public/p07-ph2-wazuh-agents-result.png` | expected - not present |
 | 8.3 | Ensure Adequate Audit Log Storage | P7 Wazuh retention and index storage proof (90 days) | `projects/p07-siem-incident-response/evidence/public/p07-ph3-log-retention-result.png` | expected - not present |
 | 9.1 | Ensure Use of Only Fully Supported Browsers and Email Clients | P4 supported-browser baseline in the compliance report | `projects/p04-endpoint-hardening/evidence/public/p04-ph1-browser-support-result.png` | expected - not present |

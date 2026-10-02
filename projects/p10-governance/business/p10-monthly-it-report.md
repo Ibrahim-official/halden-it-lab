@@ -29,19 +29,19 @@ them with `python3 projects/p10-governance/scripts/collect_kpis.py`.
 | KPI | Value | Source |
 |---|---|---|
 | Projects with measured results | 0 of 10 | `projects/*/README.md` results tables |
-| Projects whose README still says "not measured" | 1 (P1 has a results table; the others have not written theirs yet) | `projects/*/README.md` |
-| Projects by showcase status | 0 done · 1 in-progress · 9 planned | `projects/*/showcase.md` frontmatter |
-| Acceptance tests not yet run | 7 recorded so far, all "not run" | `projects/*/README.md` acceptance-test tables |
+| Projects whose README still says "not measured" | 10 of 10 | `projects/*/README.md` |
+| Projects by showcase status | 0 done · 10 in-progress · 0 planned | `projects/*/showcase.md` frontmatter |
+| Acceptance tests not yet run | 95 of 97 recorded ("not run") | `projects/*/README.md` acceptance-test tables |
 | Open Definition-of-Done items | 8 | `PROGRESS.md` DoD table |
-| Business artifacts authored (Markdown) | 11 (plus this report) | `projects/*/business/*.md` |
-| Automation scripts committed | 123, in 8 of 10 projects with a Python test suite | `projects/*/scripts/**` |
-| CIS IG1 safeguards with expected evidence present | 10 of 56 | `configs/cis-ig1-evidence-map.csv` |
+| Business artifacts authored (Markdown) | 61 across the ten projects | `projects/*/business/*.md` |
+| Automation scripts committed | 146, with a Python test suite in 9 of 10 projects | `projects/*/scripts/**` |
+| CIS IG1 safeguards with expected evidence present | 16 of 56 | `configs/cis-ig1-evidence-map.csv` |
 | CIS IG1 safeguards scored | 0 of 56 | `data/cis-ig1-safeguards.csv` |
 | Changes recorded | 1 (awaiting approval) | `data/change-log.csv` |
 | Emergency change share | 0% (no emergency changes recorded) | `data/change-log.csv` |
 | Age of the oldest open change | 3 days | `data/change-log.csv` |
 | Policies approved | 0 of 10 | `data/policy-register.csv` |
-| Actions closed on time | no actions recorded yet | `data/action-tracker.csv` |
+| Open actions in the tracker | 0 (none recorded yet) | `data/action-tracker.csv` |
 
 ### 2b. Lab-measured (not measured yet)
 

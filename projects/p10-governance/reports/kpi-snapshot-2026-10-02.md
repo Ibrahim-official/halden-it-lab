@@ -9,15 +9,15 @@
 | KPI | Name | Value | Unit | Source |
 |---|---|---|---|---|
 | KPI-27 | Projects with measured results | 0 | — | projects/*/README.md (## Results tables) |
-| KPI-34 | Projects whose README still says 'not measured' | 3 | — | projects/*/README.md (## Results tables) |
-| KPI-28 | Projects by showcase status | {'done': 0, 'in-progress': 4, 'planned': 6} | — | projects/*/showcase.md frontmatter (status) |
-| KPI-35 | Projects carrying the Definition-of-Done template | 3 | — | projects/*/README.md |
-| KPI-29 | Acceptance tests not yet run | 24 | — | projects/*/README.md (## Acceptance tests tables) |
+| KPI-34 | Projects whose README still says 'not measured' | 10 | — | projects/*/README.md (## Results tables) |
+| KPI-28 | Projects by showcase status | {'done': 0, 'in-progress': 10, 'planned': 0} | — | projects/*/showcase.md frontmatter (status) |
+| KPI-35 | Projects carrying the Definition-of-Done template | 10 | — | projects/*/README.md |
+| KPI-29 | Acceptance tests not yet run | 95 | — | projects/*/README.md (## Acceptance tests tables) |
 | KPI-25 | Open Definition-of-Done items | 8 | — | PROGRESS.md (Definition of Done table) |
-| KPI-30 | Business artifacts authored (Markdown) | 18 | — | projects/*/business/*.md |
-| KPI-31 | Automation scripts committed | 135 | — | projects/*/scripts/**/*.{ps1,sh,py} |
+| KPI-30 | Business artifacts authored (Markdown) | 61 | — | projects/*/business/*.md |
+| KPI-31 | Automation scripts committed | 146 | — | projects/*/scripts/**/*.{ps1,sh,py} |
 | KPI-22 | CIS IG1 implementation % | not measured | % | data/cis-ig1-safeguards.csv (after_status column) |
-| KPI-23 | Safeguards with evidence present | 10 | — | configs/cis-ig1-evidence-map.csv vs the repository |
+| KPI-23 | Safeguards with evidence present | 16 | — | configs/cis-ig1-evidence-map.csv vs the repository |
 | KPI-18 | Changes recorded | 1 | — | data/change-log.csv |
 | KPI-19 | Emergency change share | 0.0 | % | data/change-log.csv |
 | KPI-32 | Changes awaiting approval (unsigned) | 1 | — | data/change-log.csv (approver column empty) |

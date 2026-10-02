@@ -121,8 +121,10 @@ safeguard_id  →  configs/cis-ig1-evidence-map.csv  →  artifact_path  →  a 
 - `scripts/evidence_index.py` walks the map and reports, for each safeguard, whether the named
   artifact exists **today**. Because the lab has not run, most are `expected - not present` — that is
   the honest finding and it is why nothing is scored.
-- `scripts/cis_assessment.py` refuses a score of `3` that has no evidence source. So the score cannot
-  drift away from the evidence.
+- `scripts/cis_assessment.py` refuses a score of `3` that has no evidence source, and refuses a `3`
+  whose evidence source is a repository path that does not resolve to a real file. (The evidence
+  *map* only says where evidence is expected; it is not itself proof.) So the score cannot drift away
+  from the evidence.
 - `scripts/monthly_report.py` refuses to render if a cited evidence file is missing. A management
   report therefore cannot link to a source that does not exist.
 

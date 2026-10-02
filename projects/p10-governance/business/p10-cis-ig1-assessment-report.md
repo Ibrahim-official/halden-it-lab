@@ -32,9 +32,11 @@ control set.
 **Before vs after:** "before" is the inherited Halden state recorded in each project's problem
 statement. "After" is the state today, counting only what has a file to prove it.
 
-**The evidence rule:** a score of 3 requires a named evidence source. The assessment tool
-(`projects/p10-governance/scripts/cis_assessment.py`) refuses a 3 with no evidence and refuses any
-value outside 0–3. A safeguard with no evidence stays blank rather than being scored generously.
+**The evidence rule:** a score of 3 requires a named evidence source, and if that source is given as a
+repository path it must resolve to a real file. The assessment tool
+(`projects/p10-governance/scripts/cis_assessment.py`) refuses a 3 with no evidence, refuses a 3 whose
+evidence file does not exist, and refuses any value outside 0–3. A safeguard with no evidence stays
+blank rather than being scored generously.
 
 **Who scores:** the IT Lead scores, and each safeguard's evidence is a sanitized artifact from P1–P9.
 The % implemented is reported as the sum of scores divided by (3 × the number of safeguards scored).

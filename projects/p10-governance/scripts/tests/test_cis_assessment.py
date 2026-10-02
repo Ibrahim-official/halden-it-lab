@@ -141,6 +141,50 @@ class ValidationTests(unittest.TestCase):
         assessment = ca.load_assessment(safeguards, self.root / "missing.csv")
         self.assertTrue(any("names no evidence source" in e for e in assessment.errors))
 
+    def test_score_of_three_with_missing_evidence_file_is_rejected(self) -> None:
+        """A path that does not resolve to a real file is not evidence."""
+        safeguards = write_csv(
+            self.root / "s.csv",
+            HEADER,
+            [safeguard_row("1.1", after="3", evidence="projects/nobody/here.png")],
+        )
+        assessment = ca.load_assessment(safeguards, self.root / "missing.csv")
+        self.assertTrue(any("does not exist in the repository" in e for e in assessment.errors))
+
+    def test_score_of_three_with_real_evidence_file_passes(self) -> None:
+        """The shipped architecture diagram is a real file, so it is acceptable evidence."""
+        safeguards = write_csv(
+            self.root / "s.csv",
+            HEADER,
+            [
+                safeguard_row(
+                    "1.1",
+                    after="3",
+                    evidence="projects/p10-governance/evidence/public/p10-architecture.svg",
+                )
+            ],
+        )
+        assessment = ca.load_assessment(safeguards, self.root / "missing.csv")
+        self.assertFalse(any("evidence" in e for e in assessment.errors))
+
+    def test_evidence_map_alone_does_not_satisfy_the_evidence_rule(self) -> None:
+        """An expected artifact path from the map is not proof; the score still needs a source."""
+        safeguards = write_csv(
+            self.root / "s.csv",
+            HEADER,
+            [safeguard_row("1.1", after="3", evidence="")],
+        )
+        evidence = write_csv(
+            self.root / "e.csv",
+            EVIDENCE_HEADER,
+            [
+                "1.1,1,Inventory,Detailed Asset Inventory,desc,GLPI reconciliation,P9,"
+                "projects/p09-service-desk-cmdb/evidence/public/x.csv,csv-report"
+            ],
+        )
+        assessment = ca.load_assessment(safeguards, evidence)
+        self.assertTrue(any("names no evidence source" in e for e in assessment.errors))
+
     def test_score_of_three_with_evidence_is_accepted(self) -> None:
         safeguards = write_csv(
             self.root / "s.csv",

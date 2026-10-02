@@ -101,8 +101,12 @@ class ProjectProbeTests(unittest.TestCase):
 
     def test_acceptance_tests_counted(self) -> None:
         total, not_run = ck.count_acceptance_tests()
-        self.assertEqual(total, not_run)  # nothing has been run
         self.assertGreater(total, 0)
+        self.assertLessEqual(not_run, total)
+        # The large majority of acceptance tests target the lab and therefore read "not run".
+        # A small number (for example the P5 Python unit tests and the synthetic-data generators)
+        # are genuinely runnable without a lab, so this is a ratio check, not an equality.
+        self.assertGreater(not_run, total * 0.9)
 
     def test_dod_items_present(self) -> None:
         count, items = ck.count_dod_items()

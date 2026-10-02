@@ -153,55 +153,55 @@
       "rag": "red",
       "provenance": "repository",
       "source": "projects/*/README.md (## Results tables)",
-      "note": "0 of 10 projects have any measured result yet: 3 have a results table whose rows read 'not measured' and 7 do not have the table written yet. This is expected before lab execution."
+      "note": "0 of 10 projects have any measured result yet: 10 have a results table whose rows read 'not measured' and 0 do not have the table written yet. This is expected before lab execution."
     },
     {
       "id": "KPI-34",
       "label": "Projects whose README still says 'not measured'",
-      "value": 3,
+      "value": 10,
       "unit": "",
       "target": "0",
       "rag": "red",
       "provenance": "repository",
       "source": "projects/*/README.md (## Results tables)",
-      "note": "p01-core-infrastructure, p08-backup-dr, p09-service-desk-cmdb"
+      "note": "p01-core-infrastructure, p02-identity-lifecycle, p03-ad-security, p04-endpoint-hardening, p05-vuln-management, p06-network-segmentation, p07-siem-incident-response, p08-backup-dr, p09-service-desk-cmdb, p10-governance"
     },
     {
       "id": "KPI-28",
       "label": "Projects by showcase status",
       "value": {
         "done": 0,
-        "in-progress": 4,
-        "planned": 6
+        "in-progress": 10,
+        "planned": 0
       },
       "unit": "",
       "target": "",
       "rag": "informational",
       "provenance": "repository",
       "source": "projects/*/showcase.md frontmatter (status)",
-      "note": "done: none; in-progress: 4; planned: 6"
+      "note": "done: none; in-progress: 10; planned: 0"
     },
     {
       "id": "KPI-35",
       "label": "Projects carrying the Definition-of-Done template",
-      "value": 3,
+      "value": 10,
       "unit": "",
       "target": "10",
-      "rag": "amber",
+      "rag": "green",
       "provenance": "repository",
       "source": "projects/*/README.md",
-      "note": "7 project(s) still use the placeholder README (write-up pending): p02-identity-lifecycle, p03-ad-security, p04-endpoint-hardening, p05-vuln-management, p06-network-segmentation, p07-siem-incident-response, p10-governance"
+      "note": "0 project(s) still use the placeholder README (write-up pending): none"
     },
     {
       "id": "KPI-29",
       "label": "Acceptance tests not yet run",
-      "value": 24,
+      "value": 95,
       "unit": "",
       "target": "0",
       "rag": "red",
       "provenance": "repository",
       "source": "projects/*/README.md (## Acceptance tests tables)",
-      "note": "of 24 acceptance-test rows found across the projects; 7 project(s) have not written their acceptance-test table yet and are not counted"
+      "note": "of 97 acceptance-test rows found across the projects; 0 project(s) have not written their acceptance-test table yet and are not counted"
     },
     {
       "id": "KPI-25",
@@ -217,7 +217,7 @@
     {
       "id": "KPI-30",
       "label": "Business artifacts authored (Markdown)",
-      "value": 18,
+      "value": 61,
       "unit": "",
       "target": "",
       "rag": "informational",
@@ -228,13 +228,13 @@
     {
       "id": "KPI-31",
       "label": "Automation scripts committed",
-      "value": 135,
+      "value": 146,
       "unit": "",
       "target": "",
       "rag": "informational",
       "provenance": "repository",
       "source": "projects/*/scripts/**/*.{ps1,sh,py}",
-      "note": "8 of 10 projects ship a Python test suite in scripts/tests/"
+      "note": "9 of 10 projects ship a Python test suite in scripts/tests/"
     },
     {
       "id": "KPI-22",
@@ -250,13 +250,13 @@
     {
       "id": "KPI-23",
       "label": "Safeguards with evidence present",
-      "value": 10,
+      "value": 16,
       "unit": "",
       "target": "56",
       "rag": "red",
       "provenance": "repository",
       "source": "configs/cis-ig1-evidence-map.csv vs the repository",
-      "note": "46 of 56 expected evidence artifacts are not in the repository yet (the lab has not been executed)"
+      "note": "40 of 56 expected evidence artifacts are not in the repository yet (the lab has not been executed)"
     },
     {
       "id": "KPI-18",

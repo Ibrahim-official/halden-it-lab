@@ -18,15 +18,15 @@
 | KPI | Value | Target | RAG | Source |
 |---|---|---|---|---|
 | KPI-27 Projects with measured results | 0 | 10 of 10 | red | `projects/*/README.md (## Results tables)` |
-| KPI-34 Projects whose README still says 'not measured' | 3 | 0 | red | `projects/*/README.md (## Results tables)` |
-| KPI-28 Projects by showcase status | {'done': 0, 'in-progress': 4, 'planned': 6} | — | informational | `projects/*/showcase.md frontmatter (status)` |
-| KPI-35 Projects carrying the Definition-of-Done template | 3 | 10 | amber | `projects/*/README.md` |
-| KPI-29 Acceptance tests not yet run | 24 | 0 | red | `projects/*/README.md (## Acceptance tests tables)` |
+| KPI-34 Projects whose README still says 'not measured' | 10 | 0 | red | `projects/*/README.md (## Results tables)` |
+| KPI-28 Projects by showcase status | {'done': 0, 'in-progress': 10, 'planned': 0} | — | informational | `projects/*/showcase.md frontmatter (status)` |
+| KPI-35 Projects carrying the Definition-of-Done template | 10 | 10 | green | `projects/*/README.md` |
+| KPI-29 Acceptance tests not yet run | 95 | 0 | red | `projects/*/README.md (## Acceptance tests tables)` |
 | KPI-25 Open Definition-of-Done items | 8 | 0 | red | `PROGRESS.md (Definition of Done table)` |
-| KPI-30 Business artifacts authored (Markdown) | 18 | — | informational | `projects/*/business/*.md` |
-| KPI-31 Automation scripts committed | 135 | — | informational | `projects/*/scripts/**/*.{ps1,sh,py}` |
+| KPI-30 Business artifacts authored (Markdown) | 61 | — | informational | `projects/*/business/*.md` |
+| KPI-31 Automation scripts committed | 146 | — | informational | `projects/*/scripts/**/*.{ps1,sh,py}` |
 | KPI-22 CIS IG1 implementation % | not measured % | trend up | not measured | `data/cis-ig1-safeguards.csv (after_status column)` |
-| KPI-23 Safeguards with evidence present | 10 | 56 | red | `configs/cis-ig1-evidence-map.csv vs the repository` |
+| KPI-23 Safeguards with evidence present | 16 | 56 | red | `configs/cis-ig1-evidence-map.csv vs the repository` |
 | KPI-18 Changes recorded | 1 | — | informational | `data/change-log.csv` |
 | KPI-19 Emergency change share | 0.0 % | <= 10% | informational | `data/change-log.csv` |
 | KPI-32 Changes awaiting approval (unsigned) | 1 | 0 | informational | `data/change-log.csv (approver column empty)` |

@@ -38,6 +38,7 @@ from pathlib import Path
 from _common import (
     LOG,
     P10_DIR,
+    REPO_ROOT,
     configure_logging,
     fmt,
     read_csv,
@@ -278,14 +279,29 @@ def load_assessment(
     if len(seen) != len(assessment.safeguards):
         assessment.errors.append(f"{safeguards_csv.name}: duplicate safeguard ids present")
 
-    # Evidence rule: a score of 3 must name an evidence source.
+    # Evidence rule: a score of 3 must name an evidence source AND that artifact must exist.
+    #
+    # `evidence_source` is the human-entered proof; `artifact_path` comes from the evidence map and
+    # only says where the proof is *expected* to live. A score of 3 therefore requires the explicit
+    # `evidence_source`, and if that source looks like a repository path it must resolve to a real
+    # file. An expected-but-absent artifact is not evidence.
     for s in assessment.safeguards:
         for which in ("before", "after"):
             value = s.before_status if which == "before" else s.after_status
-            if value == 3 and not (s.evidence_source or s.artifact_path):
+            if value != 3:
+                continue
+            if not s.evidence_source:
                 assessment.errors.append(
                     f"safeguard {s.safeguard_id} is scored 3 ({which}) but names no evidence source"
                 )
+                continue
+            source = s.evidence_source
+            if "/" in source and not source.startswith("http"):
+                if not (REPO_ROOT / source).is_file() and not (P10_DIR / source).is_file():
+                    assessment.errors.append(
+                        f"safeguard {s.safeguard_id} is scored 3 ({which}) but its evidence source "
+                        f"does not exist in the repository: {source}"
+                    )
         if s.is_scored and not s.expected_evidence and s.in_scope:
             assessment.warnings.append(f"safeguard {s.safeguard_id}: no expected-evidence note")
 

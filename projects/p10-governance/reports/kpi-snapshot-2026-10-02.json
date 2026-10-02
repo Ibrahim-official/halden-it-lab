@@ -15,20 +15,20 @@
       "derived_from": "repository",
       "source": "projects/*/README.md (## Results tables)",
       "kind": "count",
-      "note": "0 of 10 projects have any measured result yet: 3 have a results table whose rows read 'not measured' and 7 do not have the table written yet. This is expected before lab execution."
+      "note": "0 of 10 projects have any measured result yet: 10 have a results table whose rows read 'not measured' and 0 do not have the table written yet. This is expected before lab execution."
     },
     {
       "kpi_id": "KPI-34",
       "name": "Projects whose README still says 'not measured'",
       "area": "Governance",
-      "value": 3,
+      "value": 10,
       "unit": "",
       "target": "0",
       "rag": "red",
       "derived_from": "repository",
       "source": "projects/*/README.md (## Results tables)",
       "kind": "count",
-      "note": "p01-core-infrastructure, p08-backup-dr, p09-service-desk-cmdb"
+      "note": "p01-core-infrastructure, p02-identity-lifecycle, p03-ad-security, p04-endpoint-hardening, p05-vuln-management, p06-network-segmentation, p07-siem-incident-response, p08-backup-dr, p09-service-desk-cmdb, p10-governance"
     },
     {
       "kpi_id": "KPI-28",
@@ -36,8 +36,8 @@
       "area": "Governance",
       "value": {
         "done": 0,
-        "in-progress": 4,
-        "planned": 6
+        "in-progress": 10,
+        "planned": 0
       },
       "unit": "",
       "target": "",
@@ -45,33 +45,33 @@
       "derived_from": "repository",
       "source": "projects/*/showcase.md frontmatter (status)",
       "kind": "breakdown",
-      "note": "done: none; in-progress: 4; planned: 6"
+      "note": "done: none; in-progress: 10; planned: 0"
     },
     {
       "kpi_id": "KPI-35",
       "name": "Projects carrying the Definition-of-Done template",
       "area": "Governance",
-      "value": 3,
+      "value": 10,
       "unit": "",
       "target": "10",
-      "rag": "amber",
+      "rag": "green",
       "derived_from": "repository",
       "source": "projects/*/README.md",
       "kind": "count",
-      "note": "7 project(s) still use the placeholder README (write-up pending): p02-identity-lifecycle, p03-ad-security, p04-endpoint-hardening, p05-vuln-management, p06-network-segmentation, p07-siem-incident-response, p10-governance"
+      "note": "0 project(s) still use the placeholder README (write-up pending): none"
     },
     {
       "kpi_id": "KPI-29",
       "name": "Acceptance tests not yet run",
       "area": "Governance",
-      "value": 24,
+      "value": 95,
       "unit": "",
       "target": "0",
       "rag": "red",
       "derived_from": "repository",
       "source": "projects/*/README.md (## Acceptance tests tables)",
       "kind": "count",
-      "note": "of 24 acceptance-test rows found across the projects; 7 project(s) have not written their acceptance-test table yet and are not counted"
+      "note": "of 97 acceptance-test rows found across the projects; 0 project(s) have not written their acceptance-test table yet and are not counted"
     },
     {
       "kpi_id": "KPI-25",
@@ -90,7 +90,7 @@
       "kpi_id": "KPI-30",
       "name": "Business artifacts authored (Markdown)",
       "area": "Governance",
-      "value": 18,
+      "value": 61,
       "unit": "",
       "target": "",
       "rag": "informational",
@@ -103,14 +103,14 @@
       "kpi_id": "KPI-31",
       "name": "Automation scripts committed",
       "area": "Governance",
-      "value": 135,
+      "value": 146,
       "unit": "",
       "target": "",
       "rag": "informational",
       "derived_from": "repository",
       "source": "projects/*/scripts/**/*.{ps1,sh,py}",
       "kind": "count",
-      "note": "8 of 10 projects ship a Python test suite in scripts/tests/"
+      "note": "9 of 10 projects ship a Python test suite in scripts/tests/"
     },
     {
       "kpi_id": "KPI-22",
@@ -129,14 +129,14 @@
       "kpi_id": "KPI-23",
       "name": "Safeguards with evidence present",
       "area": "Governance",
-      "value": 10,
+      "value": 16,
       "unit": "",
       "target": "56",
       "rag": "red",
       "derived_from": "repository",
       "source": "configs/cis-ig1-evidence-map.csv vs the repository",
       "kind": "count",
-      "note": "46 of 56 expected evidence artifacts are not in the repository yet (the lab has not been executed)"
+      "note": "40 of 56 expected evidence artifacts are not in the repository yet (the lab has not been executed)"
     },
     {
       "kpi_id": "KPI-18",

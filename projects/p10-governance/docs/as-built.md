@@ -16,7 +16,7 @@
 |---|---|---|
 | Assessment framework | CIS Controls v8.1, Implementation Group 1 — 56 safeguards | ☐ |
 | Scoring scale | 0 not implemented · 1 partial · 2 implemented on some systems · 3 fully implemented and evidenced | ☐ |
-| Evidence rule | a score of 3 requires a named evidence source; enforced in code | ☐ |
+| Evidence rule | a score of 3 requires a named evidence source that resolves to a real file; enforced in code | ☐ |
 | Change types | standard · normal · emergency | ☐ |
 | CAB cadence | weekly, 15 minutes | ☐ |
 | Policy pack | ten policies, 1–2 pages each, version `v0.1`, owner IT Lead | ☐ |
@@ -32,7 +32,7 @@
 | Controls covered | 1–12, 14, 15, 17 | ☐ |
 | Controls with no IG1 safeguards (excluded) | 13, 16, 18 | ☐ |
 | Safeguards already scored | 0 (assessment not run) | ☐ |
-| Expected evidence artifacts present today | 10 of 56 (see §7) | ☐ |
+| Expected evidence artifacts present today | 16 of 56 (see §7) | ☐ |
 | Percent implemented (before) | not measured | ☐ |
 | Percent implemented (after) | not measured | ☐ |
 | Primary gap | Control 14 security awareness (8 safeguards, no programme exists) | ☐ |
@@ -97,15 +97,15 @@ what the repository contained when this document was written; re-run
 | P3 | 4 | 3 |
 | P4 | 8 | 1 |
 | P5 | 4 | 1 |
-| P6 | 5 | 0 |
+| P6 | 5 | 1 |
 | P7 | 5 | 0 |
 | P8 | 4 | 1 |
 | P9 | 7 | 1 |
-| P10 | 7 | 1 |
+| P10 | 7 | 7 |
 | Gap — 90-day roadmap (Control 14) | 8 | 0 |
-| **Total** | **56 mappings** | **10 of 56 (18%)** |
+| **Total** | **56 mappings** | **16 of 56 (29%)** |
 
-> The 18% figure is the share of expected evidence **artifacts that exist in the repository**, not a
+> The 29% figure is the share of expected evidence **artifacts that exist in the repository**, not a
 > CIS implementation score. It is low because nothing has been executed in the lab; the artifacts are
 > the sanitized outputs that a real run produces. It is reported here, clearly labelled, because it
 > is a genuine repository measurement — and it is *not* the headline CIS metric.

@@ -165,6 +165,9 @@ agrees and receives:
 > complete; lab execution runs phase by phase. Metrics, diagrams and evidence are published only
 > from real runs (the Definition of Done is in `AGENTS.md`, Section 4.7), and progress is tracked
 > in `PROGRESS.md`.
+> complete; lab execution runs phase by phase. Metrics, diagrams and evidence are published only
+> from real runs (the Definition of Done is in `AGENTS.md`, Section 4.7), and progress is tracked
+> in `PROGRESS.md`.
 
 > Status: **in progress**. The build kit (scripts, configs, runbooks, business artifacts) is
 > complete; lab execution runs phase by phase. Metrics, diagrams and evidence are published only
