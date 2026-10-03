@@ -14,22 +14,41 @@ synthetic device fleet) is labelled as synthetic wherever it appears.
 
 ## Projects (tailored build order)
 
-| # | Project | Anchor score | Status |
+| # | Project | Anchor score | Build kit | Lab run |
 |---|---|---|---|
-| 1 | [P1 — Core Infrastructure Build](projects/p01-core-infrastructure/) | 86 | 🔄 in progress |
-| 2 | [P2 — Identity Lifecycle & Access Governance](projects/p02-identity-lifecycle/) | 94 | 🔄 build kit ready |
-| 3 | [P9 — IT Service Desk, CMDB & Documentation Hub](projects/p09-service-desk-cmdb/) | 90 | 🔄 build kit ready |
-| 4 | [P3 — AD Security & Privileged Access](projects/p03-ad-security/) | 93 | 🔄 build kit ready |
-| 5 | [P4 — Endpoint Hardening & Windows 11 Readiness](projects/p04-endpoint-hardening/) | 87 | 🔄 build kit ready |
-| 6 | [P8 — Backup, Recovery & DR](projects/p08-backup-dr/) | 97 | 🔄 build kit ready |
-| 7 | [P5 — Patch & Vulnerability Management](projects/p05-vuln-management/) | 97 | 🔄 build kit ready |
-| 8 | [P6 — Network Segmentation, VPN & Wi-Fi](projects/p06-network-segmentation/) | 87 | 🔄 build kit ready |
-| 9 | [P7 — SIEM & Incident Response](projects/p07-siem-incident-response/) | 94 | 🔄 build kit ready |
-| 10 | [P10 — IT Governance & Reporting](projects/p10-governance/) | 97 | 🔄 build kit ready |
+|---|---|---|---|---|
+| 1 | [P1 — Core Infrastructure Build](projects/p01-core-infrastructure/) | 86 | ✅ complete | ⬜ pending |
+| 2 | [P2 — Identity Lifecycle & Access Governance](projects/p02-identity-lifecycle/) | 94 | ✅ complete | ⬜ pending |
+| 3 | [P9 — IT Service Desk, CMDB & Documentation Hub](projects/p09-service-desk-cmdb/) | 90 | ✅ complete | ⬜ pending |
+| 4 | [P3 — AD Security & Privileged Access](projects/p03-ad-security/) | 93 | ✅ complete | ⬜ pending |
+| 5 | [P4 — Endpoint Hardening & Windows 11 Readiness](projects/p04-endpoint-hardening/) | 87 | ✅ complete | ⬜ pending |
+| 6 | [P8 — Backup, Recovery & DR](projects/p08-backup-dr/) | 97 | ✅ complete | ⬜ pending |
+| 7 | [P5 — Patch & Vulnerability Management](projects/p05-vuln-management/) | 97 | ✅ complete | ⬜ pending |
+| 8 | [P6 — Network Segmentation, VPN & Wi-Fi](projects/p06-network-segmentation/) | 87 | ✅ complete | ⬜ pending |
+| 9 | [P7 — SIEM & Incident Response](projects/p07-siem-incident-response/) | 94 | ✅ complete | ⬜ pending |
+| 10 | [P10 — IT Governance & Reporting](projects/p10-governance/) | 97 | ✅ complete | ⬜ pending |
 
-"Build kit ready" means the scripts, configurations, runbooks, business artifacts and showcase page
-are written, reviewed and ready to run — but **nothing has been executed in the lab yet**, so no
-project is marked done and no metric is published on the site. See [`PROGRESS.md`](PROGRESS.md).
+A **build kit** means the design document, the phased and lab-guarded scripts, the configurations,
+the runbooks, the diagrams, the business artifacts (as PDFs) and the showcase page are written,
+reviewed and ready to run. **Nothing has been executed in the lab yet**, so no project is marked
+`done` and no metric is published on the site — a rule enforced in CI, not just intended. See
+[`PROGRESS.md`](PROGRESS.md) for the per-project state and the open Definition-of-Done items.
+
+## What is in the repository today
+
+| | |
+|---|---|
+| Projects | 10, in the tailored build order above |
+| Scripts | 146 (PowerShell, Bash, Python, Ansible) — lab-guarded, idempotent, `-WhatIf` where they change state |
+| Unit tests | 259 Python tests, all passing (the risk scoring, the JML rules, retention maths, restore-report parsing) |
+| Runbooks | 47 operational runbooks written so someone other than the author can run the environment |
+| Business artifacts | 61 documents (briefs, policies, matrices, registers, change records, plans) as Markdown **and** PDF |
+| Diagrams | Governance/architecture diagrams per project, `.drawio` + `.svg` |
+| Evidence | Architecture diagrams only so far — real screenshots and reports arrive with the lab runs |
+| Site | Astro static build, 18 pages, honesty/placeholder/alt-text checks green |
+
+Every published number must have a file behind it: `node site/scripts/check-honesty.mjs` fails the
+build if a metric has no evidence or if a project that is not `done` declares one at all.
 
 Total: about 18 weeks part-time (8–10 h/week). Application milestones: start applying for
 IT Support Officer roles after P1 + P2 + P9 (week 6); junior sysadmin roles after P3 + P4 + P8
